@@ -1,0 +1,33 @@
+body{
+  background-color: #E0E4CC;
+  color:#2E4053;
+}
+
+.top{
+  background-color: #FA6900;
+  color:#E0E4CC;
+  border-bottom: 15px solid #F38630;
+}
+.orange-light{
+  color:#F38630;
+}
+.bot{
+  background-color: #FA6900;
+  color:#E0E4CC;
+  border-top: 15px solid #F38630;
+}
+.border-sblue-1{
+  border: 15px double #69D2E7;
+}
+.border-orange-1{
+  border: 15px double #FA6900;
+}
+.bg-sblue-1{
+  background-color: rgb(105,210,231);
+}
+.bg-sblue-2{
+  background-color: rgb(167,219,216);
+}
+.bg-orange-2{
+  background-color: rgb(243,134,48);
+}

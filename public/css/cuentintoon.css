@@ -1,0 +1,173 @@
+/* Fuentes
+font-family: 'Cherry Swash', cursive; Para encabezados
+font-family: 'Gabriela', serif; Para texto en general */
+
+
+body{
+  background-color: RGB(195,255,104);
+  font-family: 'Gabriela', serif;
+  color:darkslategray;
+}
+h1, h2, h3{
+  font-family: 'Cherry Swash', cursive;
+}
+
+/* Top Side */
+.top-side{
+  background-color: RGB(126,208,214);
+  margin-bottom: 0;
+}
+#logo-top{
+  width: 35%;
+  display: block;
+  margin: auto;
+}
+/* Mid Side */
+.mid-side{
+  margin-top: 1.5em;
+}
+
+/* Card Index */
+.cover{
+  width: 99%;
+  border-radius: 50%;
+  border: 2px double rgb(135,214,155);
+}
+.cover:hover{
+  width: 100%;
+}
+.card, .card-cuento{
+  text-align: center;
+  background-color: RGB(244,252,232);
+  border-radius: none;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+  border: none;
+}
+.card-actions{
+  background-color: rgb(78,150,137);
+  border-bottom: 10px solid rgba(126,208,214,0.5);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.badge-autor{
+  background-color: rgb(78,150,137);
+  color:white;
+}
+.badge-nivel{
+  background-color: rgb(126,208,214);
+  color:white;
+}
+.card-link{
+  color:white;
+}
+.card-link:hover{
+  background-color: rgba(126,208,214,0.5);
+}
+.card-link-delete{
+  float: right;
+  color:darkred;
+}
+.card-link-delete:hover{
+  background-color: rgb(123, 36, 28);
+  text-decoration: none;
+  color:white;
+}
+/* Navbar-top */
+.navbar-ct{
+  background-color: RGB(244,252,232);
+  border: none;
+  border-top: 20px double RGB(126,208,214);
+  box-shadow: none;
+  font-size: 20px;
+}
+.link-navbar{
+  margin-left: auto;
+  width: 75%;
+}
+.link-navbar:hover{
+  width: 100%;
+}
+.iconhome{
+  margin:auto;
+  margin-right: 1.8em;
+}
+
+/* -----------------------------------------
+            Vistas de Cuento
+-----------------------------------------  */
+
+/* Vistas con Formularios */
+.form-container{
+  background-color: rgb(244,252,232);
+  border-radius: 10px;
+  border: 15px double rgba(135,214,155,1);
+}
+.form-items{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.form-button{
+  background-color: rgb(78,150,137);
+  color: rgb(244,252,232);
+
+}
+.form-button:hover{
+  background-color: rgb(135,214,155);
+  border: 1px solid rgb(78,150,137);
+}
+.form-header{
+  color: rgb(135,214,155);
+}
+.form-input{
+  background-color: rgba(78,150,137,0.1);
+  border: 1px solid rgb(135,214,155);
+}
+.form-input:hover{
+  border: 1px solid rgb(78,150,137);
+  color:rgb(78,150,137);
+}
+.form-input:active{
+  background-color: rgba(78,150,137,0.1);
+}
+.badge-form{
+  background-color: rgb(123, 36, 28);
+}
+.dark-letter{
+  color: rgb(78,150,137);
+}
+.validate-error{
+  text-align: justify;
+}
+/* Preview */
+.preview-container{
+  background-color: rgb(244,252,232);
+  border-radius: 10px;
+  border: 15px double rgb(135,214,155);
+  text-align: center;
+}
+.preview-footer{
+  background-color: rgb(78,150,137);
+  border: 5px solid rgb(244,252,232);
+  border-radius: 15px;
+}
+
+
+/* -----------------------------------------
+              Vistas de Página
+----------------------------------------- */
+.light-letter{
+  color: rgb(135,214,155);
+}
+.pages-container{
+  background-color: rgb(244,252,232);
+  border-radius: 10px;
+  border: 15px double rgb(135,214,155);
+  text-align: center;
+}
+.pages-footer{
+  background-color: rgb(78,150,137);
+  border: 5px solid rgb(244,252,232);
+  border-radius: 15px;
+  margin: auto;
+}
