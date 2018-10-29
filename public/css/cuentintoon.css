@@ -3,6 +3,14 @@ font-family: 'Cherry Swash', cursive; Para encabezados
 font-family: 'Gabriela', serif; Para texto en general */
 
 
+@media (max-width: @screen-xs) {
+    body{font-size: 1em;}
+}
+
+@media (max-width: @screen-sm) {
+    body{font-size: 1em;}
+}
+
 body{
   background-color: RGB(195,255,104);
   font-family: 'Gabriela', serif;
@@ -113,7 +121,8 @@ h1, h2, h3{
 
 }
 .form-button:hover{
-  background-color: rgb(135,214,155);
+  color:rgb(244,252,232);
+  background-color: darkslategray;
   border: 1px solid rgb(78,150,137);
 }
 .form-header{

@@ -101,6 +101,7 @@
 
 <!-- Script's Zone -->
 @include('scripts.tooltip')
+@include('scripts.toastr')
 
 </body>
 </html>

@@ -23,7 +23,7 @@ class PaginaController extends Controller
      public function leer($id)
     {
         $cuento = Cuento::find($id);
-        $paginas = Pagina::where('idcuento',$cuento->id)->paginate(1);
+        $paginas = Pagina::where('cuento_id',$cuento->id)->paginate(1);
         return view('paginas.index',compact('cuento','paginas'))->withPaginas($paginas);
     }
 
@@ -47,8 +47,6 @@ class PaginaController extends Controller
     public function store(PaginaRequest $request,$id)
     {
 
-      $cuento = Cuento::find($id);
-      //Aqui va summernote store
       $this->validate($request, [
            'contenido' => 'required',
        ]);
@@ -56,11 +54,17 @@ class PaginaController extends Controller
        $contenido   = $request->input('contenido');
 
        $pagina = new Pagina;
-       $pagina->idcuento    = $id;
-       $pagina->contenido   = $contenido;
-       $pagina->save();
+       $pagina->cuento_id = $id;
+       $pagina->contenido = $contenido;
 
-       return redirect()->route('cuentos.index');
+       if ($pagina->save()) {
+         echo "success";
+         $notification = array(
+           'message'    => 'Nueva página creada',
+           'alert-type' => 'success'
+         );
+       }
+       return redirect()->route('paginas.preview', $id);
 
     }
 
@@ -70,9 +74,18 @@ class PaginaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function preview($id)
     {
-        //
+        $cuento = Cuento::find($id);
+
+        return view('paginas.preview')->with(compact('cuento'));
+    }
+
+    public function ready()
+    {
+      return redirect()
+      ->route('home')
+      ->with('status','Tu cuento ha sido creado exitosamente, ahora pasará a estado de revisión para luego ser publicado.');
     }
 
     /**
@@ -118,8 +131,15 @@ class PaginaController extends Controller
     public function destroy($id)
     {
         $pagina = Pagina::find($id);
-        $pagina->delete();
 
-        return redirect()->route('cuentos.index');
+        if ( $pagina->delete() ) {
+          echo "error";
+          $notification = array(
+            'message'     => 'Una página ha sido eliminada',
+            'alert-type'  => 'error'
+          );
+        }
+
+        return back()->with($notification);
     }
 }

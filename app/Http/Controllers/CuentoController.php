@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Cuento;
 use App\Pagina;
 use Illuminate\Http\Request;
 use App\Http\Requests\CuentoRequest;
-use Image;
+use Illuminate\Support\Facades\Auth;
+
 
 class CuentoController extends Controller
 {
@@ -17,7 +19,7 @@ class CuentoController extends Controller
      */
     public function index()
     {
-        $cuentos = Cuento::paginate(6);
+        $cuentos = Cuento::where('estado', 'Publicado')->paginate(6);
         return view('cuentos.index',compact('cuentos'))->withCuentos($cuentos);
     }
 
@@ -57,7 +59,7 @@ class CuentoController extends Controller
     {
 
       // -------------------------------------
-      //     Código para guardar la imagen
+      //           Guardar imagen
       // -------------------------------------
 
       $ruta = public_path().'/img/';
@@ -67,13 +69,15 @@ class CuentoController extends Controller
       $imagen->resize(300,300);
       $imagen->save($ruta . $temp_name, 100);
 
+      $id_usuario = Auth::id();
+
       $cuento = new Cuento;
 
       $cuento->titulo       = $request->get('titulo');
       $cuento->cover        = $temp_name;
-      $cuento->idprofesor   = $request->get('idprofesor');
+      $cuento->user_id      = $id_usuario;
       $cuento->nivel        = $request->get('nivel');
-      $cuento->estado       = $request->get('estado');
+      $cuento->estado       = 'En Revisión';
       $cuento->autor        = $request->get('autor');
       $cuento->descripcion  = $request->get('descripcion');
 
@@ -148,6 +152,25 @@ class CuentoController extends Controller
       return redirect()->route('cuentos.index');
     }
 
+
+    public function revision($id)
+    {
+      $cuento = Cuento::find($id);
+      $cuento->estado = 'Publicado';
+
+      if ( $cuento->update() ) {
+        echo "success";
+        $notification = array(
+          'message'     => 'El cuento ha sido publicado',
+          'alert-type'  => 'success'
+        );
+      }
+
+      return back()->with($notification);
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -162,7 +185,14 @@ class CuentoController extends Controller
         unlink(public_path('img/'.$cuento->cover));
       }
 
-      $cuento->delete();
-      return redirect()->route('cuentos.index');
+
+      if ( $cuento->delete() ) {
+        echo 'error';
+        $notification = array(
+          'message'     => 'Un cuento ha sido eliminado',
+          'alert-type'  => 'error'
+        );
+      }
+      return back()->with($notification);
     }
 }

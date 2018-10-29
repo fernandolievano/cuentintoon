@@ -10,6 +10,11 @@ class Cuento extends Model
       'titulo','idprofesor','nivel','estado','autor','descripcion',
     ];
 
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
+
     public function paginas()
     {
       return $this->hasMany(Pagina::class);

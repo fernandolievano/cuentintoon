@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Caffeinated\Shinobi\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use App\Cuento;
+use App\User;
 
 
 class HomeController extends Controller
@@ -25,7 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $roles = Role::where('slug', '<>', 'admin')->get();
-        return view('home')->with(compact('roles'));
+        $cuentosPendientes = Cuento::where('estado', 'En Revisión')->get();
+        $user = Auth::user();
+        return view('home')->with(compact('cuentosPendientes','user'));
     }
 }

@@ -22,13 +22,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('cuentos', 'CuentoController');
 Route::get('cuentos/{cuento}/vistaPrevia', 'CuentoController@preview')->name('cuentos.preview');
+Route::put('publicar/{id}', 'CuentoController@revision')->name('cuentos.publicar');
 
 Route::name('paginas.')->prefix('pagina')->group(function () {
   Route::get('/leer/{cuento}/','PaginaController@leer')->name('read');
   Route::get('/nueva/{cuento}', 'PaginaController@create')->name('create');
-  Route::post('/{cuento}', 'PaginaController@store')->name('store');
   Route::get('/editar/{pagina}', 'PaginaController@edit')->name('edit');
-  Route::post('/{pagina}','PaginaController@update')->name('update');
+  Route::get('/miCuento/{cuento}', 'PaginaController@preview')->name('preview');
+  Route::get('/listo', 'PaginaController@ready')->name('ready');
+  Route::post('/{cuento}', 'PaginaController@store')->name('store');
+  Route::put('/{pagina}','PaginaController@update')->name('update');
   Route::delete('/{pagina}','PaginaController@destroy')->name('delete');
 });
 

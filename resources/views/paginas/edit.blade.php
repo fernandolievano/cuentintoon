@@ -23,6 +23,7 @@
     @endif
 
     {!! Form::open(['route' => ['paginas.update', $pagina->id]]) !!}
+      @method('PUT')
       <div class="form-group">
         {!! Form::textarea('contenido', $pagina->contenido, ['class' => 'form-control summernote','id' => 'summernote']) !!}
       </div>

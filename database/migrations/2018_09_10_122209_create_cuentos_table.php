@@ -17,7 +17,7 @@ class CreateCuentosTable extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->string('cover')->nullable();
-            $table->integer('idprofesor');
+            $table->integer('user_id');
             $table->string('nivel');
             $table->string('estado')->nullable();
             $table->string('descripcion');

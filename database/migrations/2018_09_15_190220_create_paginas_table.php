@@ -15,11 +15,11 @@ class CreatePaginasTable extends Migration
     {
         Schema::create('paginas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idcuento')->unsigned();
+            $table->integer('cuento_id')->unsigned();
             $table->longText('contenido');
             $table->timestamps();
 
-            $table->foreign('idcuento')
+            $table->foreign('cuento_id')
                     ->references('id')
                     ->on('cuentos')
                     ->onDelete('cascade');

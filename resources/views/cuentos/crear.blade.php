@@ -22,6 +22,7 @@
           </div>
           @endif
         </div>
+        <!-- Fin errores  -->
 
         <div class="container-fluid">
           <div class="row justify-content-center">
@@ -63,7 +64,6 @@
               </div>
             </div>
           </div>
-          {!! Form::hidden('estado', $value='publicado', []) !!}
           <div class="row form-items">
             <div class="col-md-12 col-xs-12">
               {!! Form::label('autor', 'Autor', ['class' => 'form-label']) !!}
