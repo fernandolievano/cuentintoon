@@ -2,6 +2,16 @@
 
 @section('content')
 
+@if(session('status'))
+<br><header class="row justify-content-center">
+  <div class="col-md-12 col-xs-12">
+    <div class="alert alert-success">
+      <strong>{{ session('status') }}</strong>
+    </div>
+  </div>
+</header>
+@endif
+
 <div class="row justify-content-center">
   <div class="col-md-12 col-xs-12">
     <h1 class="display-5">Usuarios</h1>

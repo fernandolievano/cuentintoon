@@ -21,7 +21,6 @@ class CreateCuentosTable extends Migration
             $table->string('nivel');
             $table->string('estado')->nullable();
             $table->string('descripcion');
-            //table->string('valoracion');
             $table->string('autor');
             $table->timestamps();
         });

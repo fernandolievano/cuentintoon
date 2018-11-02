@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="tooltip" title="Mis Cuentos">
+            <a href="{{route('home')}}" class="nav-link" data-toggle="tooltip" title="Mi Biblioteca">
               <img src="{{asset('rsc/book32.png')}}" alt="miscuentos" class="link-navbar">
             </a>
           </li>

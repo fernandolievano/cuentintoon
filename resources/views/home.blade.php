@@ -27,7 +27,7 @@
 
                     @else
                     <h2>Cuentos en revisión</h2>
-                    <table class="table table-sm table-hover table-stripped">
+                    <table class="table table-sm table-hover">
                       <thead>
                         <tr>
                           <th>Cuento</th>
@@ -39,7 +39,7 @@
                         @foreach($cuentosPendientes as $cuento)
                         <tr>
                           <td>{{$cuento->titulo}}</td>
-                          <td>Username</td>
+                          <td>{{$cuento->user->username}}</td>
                           <td>
                             <a href="#" class="btn btn-sm form-button">Inspeccionar</a>
                           </td>
@@ -73,6 +73,11 @@
         <div class="card">
           <div class="card-header">Escritor</div>
           <div class="card-body">
+            @if(count($user->cuentos) < 1)
+            <div class="alert alert-info">
+              <strong>Todavía no has creado ningún cuento</strong>
+            </div>
+            @else
             <table class="table table-sm table-striped">
               <thead>
                 <tr>
@@ -91,13 +96,18 @@
                   <td>{{$cuento->estado}}</td>
                   <td>
                     <div class="btn-group btn-group-sm" role="group">
-                      <a href="#" class="btn form-button">Crear Quizz</a>
                       <a href="{{route('cuentos.edit', $cuento->id)}}" class="btn form-button">Editar Info</a>
                       <a href="{{route('paginas.create', $cuento->id)}}" class="btn form-button">Nueva Página</a>
                     </div>
                   </td>
                   <td>
-                    <form class="hidden" action="route('cuentos.delete', $cuento->id)" method="post">
+                    <form class="hidden" action="{{route('pruebas.store', $cuento->id)}}" method="post">
+                      @csrf <input type="hidden" name="prueba" value="quizz">
+                      <button type="submit" class="btn btn-sm form-button">Crear Quizz</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form class="hidden" action="{{route('cuentos.destroy', $cuento->id)}}" method="post">
                       @csrf   @method('DELETE')
                       <button type="submit" class="btn btn-danger" data-toggle="tooltip" title="Eliminar Cuento">
                         <img src="{{asset('rsc/delete16.png')}}" class="rounded mx-auto d-block img-fluid" alt="icon">
@@ -108,6 +118,7 @@
                 @endforeach
               </tbody>
             </table>
+            @endif
           </div>
         </div>
       </div>

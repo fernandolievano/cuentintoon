@@ -19,33 +19,40 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::name('pruebas.')->prefix('quizz/')->group(function (){
+  Route::post('{cuento}/store', 'PruebaController@crearPrueba')->name('store');
+  Route::post('{prueba}/p&r', 'PruebaController@storePreguntaRespuestas')->name('pregunta.store');
+  Route::get('nueva/{prueba}', 'PruebaController@nuevaPrueba')->name('create');
+});
 
 Route::resource('cuentos', 'CuentoController');
-Route::get('cuentos/{cuento}/vistaPrevia', 'CuentoController@preview')->name('cuentos.preview');
-Route::put('publicar/{id}', 'CuentoController@revision')->name('cuentos.publicar');
-
-Route::name('paginas.')->prefix('pagina')->group(function () {
-  Route::get('/leer/{cuento}/','PaginaController@leer')->name('read');
-  Route::get('/nueva/{cuento}', 'PaginaController@create')->name('create');
-  Route::get('/editar/{pagina}', 'PaginaController@edit')->name('edit');
-  Route::get('/miCuento/{cuento}', 'PaginaController@preview')->name('preview');
-  Route::get('/listo', 'PaginaController@ready')->name('ready');
-  Route::post('/{cuento}', 'PaginaController@store')->name('store');
-  Route::put('/{pagina}','PaginaController@update')->name('update');
-  Route::delete('/{pagina}','PaginaController@destroy')->name('delete');
+Route::name('cuentos.')->prefix('cuento/')->group(function (){
+  Route::get('{cuento}/vistaPrevia', 'CuentoController@preview')->name('preview');
+  Route::put('publicar/{id}', 'CuentoController@revision')->name('publicar');
 });
 
-Route::name('user.')->prefix('usuario')->group(function () {
-  Route::post('/registrar', 'UserController@registro')->name('registro');
-  Route::post('/actualizar/{id}', 'UserController@actualizar')->name('actualizar');
+Route::name('paginas.')->prefix('pagina/')->group(function () {
+  Route::get('leer/{cuento}/','PaginaController@leer')->name('read');
+  Route::get('nueva/{cuento}', 'PaginaController@create')->name('create');
+  Route::get('editar/{pagina}', 'PaginaController@edit')->name('edit');
+  Route::get('miCuento/{cuento}', 'PaginaController@preview')->name('preview');
+  Route::get('listo', 'PaginaController@ready')->name('ready');
+  Route::put('{pagina}','PaginaController@update')->name('update');
+  Route::post('{cuento}', 'PaginaController@store')->name('store');
+  Route::delete('{pagina}','PaginaController@destroy')->name('delete');
 });
 
-Route::name('admin.')->prefix('administrador')->group(function () {
+Route::name('user.')->prefix('usuario/')->group(function () {
+  Route::post('registrar', 'UserController@registro')->name('registro');
+  Route::post('actualizar/{id}', 'UserController@actualizar')->name('actualizar');
+});
+
+Route::name('admin.')->prefix('administrador/')->group(function () {
   Route::get('/dashboard', 'AdministracionController@dashboard')->name('dashboard');
-  Route::post('/nuevoRol', 'AdministracionController@nuevoRol')->name('store.rol');
-  Route::delete('/borrarRol/{id}', 'AdministracionController@borrarRol')->name('delete.rol');
-  Route::post('/asignarRol', 'AdministracionController@asignarRol')->name('asignar.rol');
-  Route::post('/nuevoPermiso', 'AdministracionController@nuevoPermiso')->name('store.permiso');
-  Route::delete('/borrarPermiso/{id}', 'AdministracionController@borrarPermiso')->name('delete.permiso');
-  Route::post('/asignarPermiso','AdministracionController@asignarPermiso')->name('asignar.permiso');
+  Route::post('asignarPermiso','AdministracionController@asignarPermiso')->name('asignar.permiso');
+  Route::post('nuevoRol', 'AdministracionController@nuevoRol')->name('store.rol');
+  Route::post('asignarRol', 'AdministracionController@asignarRol')->name('asignar.rol');
+  Route::post('nuevoPermiso', 'AdministracionController@nuevoPermiso')->name('store.permiso');
+  Route::delete('borrarPermiso/{id}', 'AdministracionController@borrarPermiso')->name('delete.permiso');
+  Route::delete('borrarRol/{id}', 'AdministracionController@borrarRol')->name('delete.rol');
 });

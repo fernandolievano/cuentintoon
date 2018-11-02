@@ -4,7 +4,7 @@
       <div class="modal-header bg-orange-2 text-light">
         <h1>Asignar Rol</h1>
       </div>
-      {!! Form::open(['id' => 'usuario-rol']) !!}
+      {!! Form::open(['id' => 'usuario-rol', 'route' => 'admin.asignar.rol']) !!}
       <div class="modal-body">
         <div class="row">
           <div class="col-md-11 col-xs-11">

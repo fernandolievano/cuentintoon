@@ -9,9 +9,8 @@
          <h1>{{ $cuento->titulo }}</h1>
          <div class="preview-footer col-md-12 col-xs-12">
            <div class="btn-group btn-group-sm" role="group">
-             <a href="{{route('paginas.create', $cuento->id)}}" class="btn btn-primary">Crear otra página</a>
-             <a href="#" class="btn btn-primary">Crear Quizz</a>
-             <a href="{{route('paginas.ready')}}" class="btn btn-primary">Listo</a>
+             <a href="{{route('paginas.create', $cuento->id)}}" class="btn form-button">Crear otra página</a>
+             <a href="{{route('paginas.ready')}}" class="btn form-button">Listo</a>
            </div>
          </div>
        </div>

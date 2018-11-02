@@ -16,7 +16,7 @@ class CreateResultadosTable extends Migration
         Schema::create('resultados', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('evaluacion_id')->unsigned();
+            $table->integer('prueba_id')->unsigned();
             $table->integer('resultado');
             $table->timestamps();
         });

@@ -100,7 +100,7 @@ class AdministracionController extends Controller
     if ( $rol->save() ) {
       echo "success";
       $notification = array(
-        'message'     => 'Permiso asignado éxitosamente',
+        'message'     => 'Permiso asignado exitosamente',
         'alert-type'  => 'success'
       );
     }
@@ -113,15 +113,13 @@ class AdministracionController extends Controller
   public function asignarRol(Request $request){
 
     $idrole = $request->get('rol');
+    $iduser = $request->get('user');
 
-    $iduser = Auth::id();
     $user   = User::find($iduser);
     $user->assignRole($idrole);
 
-    $user = User::find($iduser);
-    $rolesasignados = $user->getRoles();
 
-    return  json_encode($rolesasignados);
+    return back()->with('status','Rol asignado exitosamente');
 
   }
 
