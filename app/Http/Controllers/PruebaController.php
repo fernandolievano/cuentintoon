@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Prueba;
 use App\Cuento;
 use App\Pregunta;
+use App\Resultado;
 use App\Respuesta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -163,5 +164,30 @@ class PruebaController extends Controller
     }
 
     return $key;
+  }
+
+  public function evaluar(Request $request, $id)
+  {
+    $resultado = new Resultado;
+    $resultado->user_id = Auth::id();
+    $rest = array();
+    // $rest = json_decode($request, true);
+    $rest = $request->toArray();
+    // dd($rest);
+
+    foreach ($rest['respuesta'] as $key => $value) {
+        $respuesta = Respuesta::find($value);
+        if ($respuesta->correcta) {
+            echo "es correcta";
+        }
+        else{
+            echo "incorrecta";
+        }
+    }
+
+    // for ($i=0; $i < count($rest) ; $i++) { 
+    //     echo $rest['respuesta'][$i];
+    // }
+
   }
 }

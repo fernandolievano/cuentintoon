@@ -24,6 +24,7 @@ Route::name('pruebas.')->prefix('quizzes/')->group(function (){
   Route::post('{prueba}/pr', 'PruebaController@storePreguntaRespuestas')->name('pregunta.store');
   Route::get('nuevo/{prueba}', 'PruebaController@nuevaPrueba')->name('create');
   Route::get('{cuento}', 'PruebaController@misPruebas')->name('show');
+  Route::post('evaluar/{prueba}', 'PruebaController@evaluar')->name('evaluar');
 });
 
 Route::resource('cuentos', 'CuentoController');

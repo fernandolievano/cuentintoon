@@ -15,7 +15,7 @@
          </div>
        </div>
 
-       <div class="card-body row justify-content-center">
+       <div class="card-body row justify-content-center" id="pagina">
          @foreach($cuento->paginas as $pagina)
          <div class="col-md-5 col-xs-12 border border-dark">
            <div class="row">
@@ -38,4 +38,7 @@
  </div>
 
 @include('scripts.fix-height')
+<script>
+  $("#pagina img").css("width","200px");
+</script>
 @endsection
