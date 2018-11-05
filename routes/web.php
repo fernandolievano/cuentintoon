@@ -19,16 +19,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::name('pruebas.')->prefix('quizz/')->group(function (){
+Route::name('pruebas.')->prefix('quizzes/')->group(function (){
   Route::post('{cuento}/store', 'PruebaController@crearPrueba')->name('store');
-  Route::post('{prueba}/p&r', 'PruebaController@storePreguntaRespuestas')->name('pregunta.store');
-  Route::get('nueva/{prueba}', 'PruebaController@nuevaPrueba')->name('create');
+  Route::post('{prueba}/pr', 'PruebaController@storePreguntaRespuestas')->name('pregunta.store');
+  Route::get('nuevo/{prueba}', 'PruebaController@nuevaPrueba')->name('create');
+  Route::get('{cuento}', 'PruebaController@misPruebas')->name('show');
 });
 
 Route::resource('cuentos', 'CuentoController');
 Route::name('cuentos.')->prefix('cuento/')->group(function (){
   Route::get('{cuento}/vistaPrevia', 'CuentoController@preview')->name('preview');
   Route::put('publicar/{id}', 'CuentoController@revision')->name('publicar');
+  Route::get('testeo', 'CuentoController@testingComponent')->name('component');
 });
 
 Route::name('paginas.')->prefix('pagina/')->group(function () {

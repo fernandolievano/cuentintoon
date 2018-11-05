@@ -22,7 +22,7 @@
 <body>
 
   <div class="container-fluid top-side">
-    <div class="col">
+    <div class="col-md col-sm col-xs">
       <img src="{{asset('rsc/logo.png')}}" class="img-fluid" id="logo-top" alt="center">
     </div>
   </div>
@@ -88,7 +88,7 @@
   </div>
 </nav>
 
-<main class="mid-side container-fluid">
+<main class="mid-side container-fluid" id="app">
   @yield('content')
   @include('cuentos.crear')
 </main>

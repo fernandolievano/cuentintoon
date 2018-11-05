@@ -5,7 +5,7 @@
 
 
       @if (session('status'))
-          <div class="alert alert-success col-md-12 col-xs-12 text-center" role="alert">
+          <div class="alert alert-success col-md-12 col-sm-12 col-xs-12 text-center" role="alert">
               {{ session('status') }}
           </div>
       @endif
@@ -14,7 +14,7 @@
     <!-- Dashboard de moderador -->
     <br>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-10 col-sm-10 col-xs-12">
             <div class="card">
                 <div class="card-header">Moderador</div>
 
@@ -22,7 +22,7 @@
 
                     @if(count($cuentosPendientes) < 1)
                     <div class="alert alert-info">
-                      <strong>No hay cuentos en Revisión</strong>
+                      <strong>No hay cuentos en revisión</strong>
                     </div>
 
                     @else
@@ -66,10 +66,11 @@
     </div>
     <!-- Fin Dashboard de moderador -->
 
+
     <!-- Dashboard de escritor -->
     <br>
     <div class="row justify-content-center">
-      <div class="col-md-10 col-xs-10">
+      <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="card">
           <div class="card-header">Escritor</div>
           <div class="card-body">
@@ -97,7 +98,7 @@
                   <td>
                     <div class="btn-group btn-group-sm" role="group">
                       <a href="{{route('cuentos.edit', $cuento->id)}}" class="btn form-button">Editar Info</a>
-                      <a href="{{route('paginas.create', $cuento->id)}}" class="btn form-button">Nueva Página</a>
+                      <a href="{{route('paginas.create', $cuento->id)}}" class="btn form-button">Agregar Página</a>
                     </div>
                   </td>
                   <td>
@@ -107,9 +108,12 @@
                     </form>
                   </td>
                   <td>
+                    <a href="{{route('pruebas.show', $cuento->id)}}" class="btn btn-sm btn-xs form-button">Quizzes de {{ $cuento->titulo }}</a>
+                  </td>
+                  <td>
                     <form class="hidden" action="{{route('cuentos.destroy', $cuento->id)}}" method="post">
                       @csrf   @method('DELETE')
-                      <button type="submit" class="btn btn-danger" data-toggle="tooltip" title="Eliminar Cuento">
+                      <button type="submit" class="btn btn-danger btn-sm btn-xs" data-toggle="tooltip" title="Eliminar Cuento">
                         <img src="{{asset('rsc/delete16.png')}}" class="rounded mx-auto d-block img-fluid" alt="icon">
                       </button>
                     </form>

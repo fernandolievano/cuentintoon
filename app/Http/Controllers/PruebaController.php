@@ -44,8 +44,8 @@ class PruebaController extends Controller
         if ( $prueba->save() ) {
           echo "info";
           $notification = array(
-            'message' => 'Todos los usuarios que lean tu cuento podrán realizar tus quizzes',
-            'alert-type' => 'info'
+            'message'       => 'Todos los usuarios que lean tu cuento podrán realizar tus quizzes',
+            'alert-type'    => 'info'
           );
         }
 
@@ -55,6 +55,7 @@ class PruebaController extends Controller
     public function nuevaPrueba($id)
     {
       $prueba = Prueba::find($id);
+
       return view('pruebas.create')->with(compact('prueba'));
     }
 
@@ -107,9 +108,11 @@ class PruebaController extends Controller
      * @param  \App\Prueba  $prueba
      * @return \Illuminate\Http\Response
      */
-    public function show(Prueba $prueba)
+    public function misPruebas($id)
     {
-        //
+        $pruebas = Prueba::where('cuento_id',$id)->get();
+
+        return view('pruebas.quizzes')->with(compact('pruebas'));
     }
 
     /**

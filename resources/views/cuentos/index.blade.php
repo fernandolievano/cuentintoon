@@ -12,9 +12,15 @@
     </div>
   @endif
 
+  <div id="cuentos">
+    <div class="bg-light" v-for="cuento in cuentos">
+      <fecha></fecha>
+    </div>
+  </div>
+
   <div class="row">
     @foreach($cuentos as $cuento)
-    <div class="col-sm-4">
+    <div class="col-md-4 col-sm-4 col-xs-4">
       <div class="card-cuento">
 
         <div class="">
@@ -52,6 +58,7 @@
   </div>
 </div>
 @include('scripts.fix-height')
+@include('scripts.fecha-cuento')
 
 @endsection
 
