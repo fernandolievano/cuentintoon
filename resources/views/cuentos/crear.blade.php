@@ -92,9 +92,13 @@
   </div>
 </div>
 
-<!-- Script para alert -->
-<script type="text/javascript">
-  $('.alert').alert()
-</script>
-@include('scripts.validar-cuento')
-@include('scripts.caracteres-cuento')
+@section('scripts')
+  <!-- Script para alert -->
+  <script type="text/javascript">
+    $('.alert').alert()
+  </script>
+  
+  @include('scripts.validar-cuento')
+  @include('scripts.caracteres-cuento')
+
+@endsection

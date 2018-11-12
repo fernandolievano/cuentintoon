@@ -1,6 +1,12 @@
 @extends('layouts.layout')
 
 @section('content')
+
+	@if (count($pruebas) < 1)
+		<div class="alert alert-warning text-center">
+			No hay pruebas para mostrar
+		</div>
+	@endif	
 	<div class="well bg-light">
 		<ul class="list-unstyled">
 			

@@ -19,6 +19,11 @@ class CreateRespuestasTable extends Migration
             $table->boolean('correcta');
             $table->integer('pregunta_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('pregunta_id')
+                    ->references('id')
+                    ->on('preguntas')
+                    ->onDelete('cascade');
         });
     }
 

@@ -11,14 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.scripts([
-   'resources/js/jquery.js',
-   'resources/js/popper.js',
-   'resources/js/tooltip.js',
-   'resources/js/bootstrap.js',
-   'resources/js/toastr.js',
-   'resources/js/vue.js',
-   'resources/js/axios.js',
-   'resources/js/tooltip.js',
-   'resources/js/app.js',
- ], 'public/js/app.js');
+
+
+ mix.js('resources/js/app.js', 'public/js')
+   	.sass('resources/sass/app.scss', 'public/css')
+   	.sourceMaps();

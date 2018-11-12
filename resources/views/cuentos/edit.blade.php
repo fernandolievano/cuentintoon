@@ -81,37 +81,37 @@
       {!! Form::close() !!}
   </div>
 </div>
+@endsection
+
+@section('scripts')
 <!-- Script para alert -->
 <script type="text/javascript">
   $('.alert').alert()
 </script>
+
 <!-- Script para validar -->
-   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-       <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-   <script>
-    $(document).ready(function () {
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+  $(document).ready(function () {
     $('#form').validate({ // initialize the plugin
-        rules: {
-            titulo: {
-                required: true,
-                minlength: 3
-            },
-            autor: {
-                required: true,
-                minlength: 5
-                
-            },
-            descripcion: {
-                required: true,
-                maxlength: 80
-                
-            },
-            cover: {
-                required: true,
-                extension: "jpeg|png"
-            },
-        }
+      rules: {
+        titulo: {
+          required: true,
+          minlength: 3
+        },
+        autor: {
+          required: true,
+          minlength: 5
+
+        },
+        descripcion: {
+          required: true,
+          maxlength: 80
+
+        },
+      }
     });
-});
+  });
 </script>
 @endsection

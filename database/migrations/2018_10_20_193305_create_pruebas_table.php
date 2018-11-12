@@ -19,6 +19,11 @@ class CreatePruebasTable extends Migration
             $table->integer('cuento_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('cuento_id')
+                    ->references('id')
+                    ->on('cuentos')
+                    ->onDelete('cascade');
         });
     }
 

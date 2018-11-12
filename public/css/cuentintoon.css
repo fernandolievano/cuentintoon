@@ -1,7 +1,7 @@
 /* Fuentes
 font-family: 'Cherry Swash', cursive; Para encabezados
 font-family: 'Gabriela', serif; Para texto en general */
-
+@import "lesshat";
 
 @media (max-width: @screen-xs) {
     body{font-size: 1em;}
@@ -37,12 +37,8 @@ h1, h2, h3{
 
 /* Card Index */
 .cover{
-  width: 99%;
+  width: 95%;
   border-radius: 50%;
-  border: 2px double rgb(135,214,155);
-}
-.cover:hover{
-  width: 100%;
 }
 .card, .card-cuento{
   text-align: center;
@@ -180,3 +176,4 @@ h1, h2, h3{
   border-radius: 15px;
   margin: auto;
 }
+

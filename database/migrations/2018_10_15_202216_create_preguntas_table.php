@@ -18,6 +18,7 @@ class CreatePreguntasTable extends Migration
             $table->string('pregunta');
             $table->integer('prueba_id')->unsigned();
             $table->timestamps();
+
         });
     }
 

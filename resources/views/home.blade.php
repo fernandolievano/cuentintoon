@@ -12,9 +12,8 @@
 
 
     <!-- Dashboard de moderador -->
-    <br>
     <div class="row justify-content-center">
-        <div class="col-md-10 col-sm-10 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="card-header">Moderador</div>
 
@@ -96,10 +95,10 @@
                   <td>{{$cuento->titulo}}</td>
                   <td>{{$cuento->estado}}</td>
                   <td>
-                    <div class="btn-group btn-group-sm" role="group">
-                      <a href="{{route('cuentos.edit', $cuento->id)}}" class="btn form-button">Editar Info</a>
-                      <a href="{{route('paginas.create', $cuento->id)}}" class="btn form-button">Agregar Página</a>
-                    </div>
+                    <a href="{{route('cuentos.edit', $cuento->id)}}" class="btn btn-sm form-button">Editar Info</a>
+                  </td>
+                  <td>
+                    <a href="{{route('paginas.create', $cuento->id)}}" class="btn btn-sm form-button">Agregar Página</a>
                   </td>
                   <td>
                     <form class="hidden" action="{{route('pruebas.store', $cuento->id)}}" method="post">
@@ -114,7 +113,7 @@
                     <form class="hidden" action="{{route('cuentos.destroy', $cuento->id)}}" method="post">
                       @csrf   @method('DELETE')
                       <button type="submit" class="btn btn-danger btn-sm btn-xs" data-toggle="tooltip" title="Eliminar Cuento">
-                        <img src="{{asset('rsc/delete16.png')}}" class="rounded mx-auto d-block img-fluid" alt="icon">
+                        <i class="fas fa-trash-alt"></i>
                       </button>
                     </form>
                   </td>

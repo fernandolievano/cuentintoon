@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pagina;
 use App\Http\Requests\PaginaRequest;
 use App\Cuento;
+use App\Pagina;
+use App\Prueba;
+use App\Pregunta;
+use App\Respuesta;
 use Image;
 
 class PaginaController extends Controller
@@ -23,8 +26,17 @@ class PaginaController extends Controller
      public function leer($id)
     {
         $cuento = Cuento::find($id);
-        $paginas = Pagina::where('cuento_id',$cuento->id)->paginate(1);
-        return view('paginas.index',compact('cuento','paginas'))->withPaginas($paginas);
+        $paginas = Pagina::where('cuento_id',$id)->paginate(1);
+
+        $prueba = Prueba::where('cuento_id', $id)->take(1)->get();
+        $preguntas = Pregunta::where('prueba_id', $prueba)->get();
+
+        $paginaActual = $paginas->currentPage();
+        $ultimaPagina = $paginas->lastPage();
+
+        return view('paginas.index')
+                ->with(compact('cuento','paginas','paginaActual', 'ultimaPagina', 'prueba', 'preguntas'))
+                    ->withPaginas($paginas);
     }
 
     /**
@@ -81,11 +93,15 @@ class PaginaController extends Controller
         return view('paginas.preview')->with(compact('cuento'));
     }
 
-    public function ready()
+    public function ready($id)
     {
+        $cuento = Cuento::find($id);
+        $cuento->estado = 'En Revisión';
+        $cuento->update();
+
       return redirect()
       ->route('home')
-      ->with('status','Tu cuento ha sido creado exitosamente, ahora pasará a estado de revisión para luego ser publicado.');
+      ->with('status','Tu cuento ha sido creado/actualizado exitosamente, ahora pasará a estado de revisión para luego ser publicado.');
     }
 
     /**
@@ -119,7 +135,12 @@ class PaginaController extends Controller
         $pagina->contenido = $contenido;
         $pagina->update();
 
-        return redirect()->route('cuentos.index');
+        $idCuento = $pagina->cuento_id;
+        $cuento = Cuento::find($idCuento);
+        $cuento->estado = 'En Revisión';
+        $cuento->update();
+
+        return redirect()->route('home');
     }
 
     /**

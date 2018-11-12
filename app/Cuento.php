@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cuento extends Model
 {
     protected $fillable = [
-      'titulo','idprofesor','nivel','estado','autor','descripcion',
+      'titulo','user_id','nivel','estado','autor','descripcion',
     ];
 
     public function user()

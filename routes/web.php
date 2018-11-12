@@ -39,7 +39,7 @@ Route::name('paginas.')->prefix('pagina/')->group(function () {
   Route::get('nueva/{cuento}', 'PaginaController@create')->name('create');
   Route::get('editar/{pagina}', 'PaginaController@edit')->name('edit');
   Route::get('miCuento/{cuento}', 'PaginaController@preview')->name('preview');
-  Route::get('listo', 'PaginaController@ready')->name('ready');
+  Route::get('{cuento}/listo', 'PaginaController@ready')->name('ready');
   Route::put('{pagina}','PaginaController@update')->name('update');
   Route::post('{cuento}', 'PaginaController@store')->name('store');
   Route::delete('{pagina}','PaginaController@destroy')->name('delete');

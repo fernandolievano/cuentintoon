@@ -49,8 +49,10 @@
     <div class="col-md-6 col-xs-6">
       {!! Form::submit('Nueva Pregunta', ['class' => 'btn btn-block btn-primary']) !!}
     </div>
-    <div class="col-md-6 col-xs-6">
+    @if (count($prueba->preguntas) > 4)
+      <div class="col-md-6 col-xs-6">
       <a href="{{route('home')}}" class="btn btn-block form-button">Terminar Quizz</a>
-    </div>
+      </div>
+    @endif  
   </div>
 {!! Form::close() !!}

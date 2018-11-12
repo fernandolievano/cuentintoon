@@ -132,18 +132,23 @@ class CuentoController extends Controller
     {
 
       $cuento = Cuento::find($id);
-      $ruta = public_path().'/img/';
-      $imagenOriginal = $request->file('cover');
-      $imagen = Image::make($imagenOriginal);
-      $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
-      $imagen->resize(300,300);
-      $imagen->save($ruta . $temp_name, 100);
+
+      if ($request->hasFile('cover')) {
+        $ruta = public_path().'/img/';
+        $imagenOriginal = $request->file('cover');
+        $imagen = Image::make($imagenOriginal);
+        $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
+        $imagen->resize(300,300);
+        $imagen->save($ruta . $temp_name, 100);
+
+        $cuento->cover        = $temp_name;
+      }
+
+      
 
       $cuento->titulo       = $request->get('titulo');
-      $cuento->cover        = $temp_name;
-      $cuento->idprofesor   = $request->get('idprofesor');
       $cuento->nivel        = $request->get('nivel');
-      $cuento->estado       = $request->get('estado');
+      $cuento->estado       = 'Publicado';
       $cuento->autor        = $request->get('autor');
       $cuento->descripcion  = $request->get('descripcion');
 
