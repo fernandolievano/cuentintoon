@@ -166,6 +166,7 @@ class PruebaController extends Controller
     return $key;
   }
 
+
   public function evaluar(Request $request, $id)
   {
     $resultado = new Resultado;
@@ -178,16 +179,12 @@ class PruebaController extends Controller
     foreach ($rest['respuesta'] as $key => $value) {
         $respuesta = Respuesta::find($value);
         if ($respuesta->correcta) {
-            echo "es correcta";
+            echo "es correcta, ";
         }
         else{
-            echo "incorrecta";
+            echo "incorrecta, ";
         }
     }
-
-    // for ($i=0; $i < count($rest) ; $i++) { 
-    //     echo $rest['respuesta'][$i];
-    // }
 
   }
 }

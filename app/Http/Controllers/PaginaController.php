@@ -26,16 +26,19 @@ class PaginaController extends Controller
      public function leer($id)
     {
         $cuento = Cuento::find($id);
-        $paginas = Pagina::where('cuento_id',$id)->paginate(1);
 
-        $prueba = Prueba::where('cuento_id', $id)->take(1)->get();
-        $preguntas = Pregunta::where('prueba_id', $prueba)->get();
+        $paginas = Pagina::where('cuento_id', $id)->paginate(1);
+
+        $prueba = Prueba::where('cuento_id', $id)->get()->random();
+
+        $preguntas= Pregunta::where('prueba_id', $prueba->id)->with('respuestas')->get()->shuffle();
 
         $paginaActual = $paginas->currentPage();
         $ultimaPagina = $paginas->lastPage();
 
         return view('paginas.index')
-                ->with(compact('cuento','paginas','paginaActual', 'ultimaPagina', 'prueba', 'preguntas'))
+                ->with(compact('cuento','paginas','paginaActual',
+                                'ultimaPagina', 'prueba', 'preguntas'))
                     ->withPaginas($paginas);
     }
 

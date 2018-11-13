@@ -18,7 +18,6 @@ window.toastr = require('toastr');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('fecha-cuento', require('./components/FechaCuento.vue'));
-Vue.component('quizz', require('./components/Quizz.vue'));
 
 window.onload = function(){
 	const app = new Vue({

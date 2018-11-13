@@ -36,11 +36,22 @@
 	</div>
 	
 	@if($paginaActual == $ultimaPagina)
-		<quizz></quizz>
-		<strong> {{ $prueba }} </strong>
-		@foreach($preguntas as $pregunta)
-			<strong>{{ $pregunta->pregunta }}</strong>
-		@endforeach
+	<div class="alert alert-success row justify-content-center">
+
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<strong>¡Felicidades, has completado la lectura!</strong>
+		</div>
+
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<button type="button"class="btn btn-success" data-toggle="modal" data-target="#quizz">	Suma puntos de lector realizando un pequeño quizz sobre lo que leíste
+			</button>
+		</div>
+		
+	</div>
+
+		@include('pruebas.evaluar')
+
+	
 	@else
 		<div class="alert alert-warning">
 			<strong>¡Continua leyendo!</strong>
