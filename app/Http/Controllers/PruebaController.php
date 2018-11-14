@@ -12,21 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PruebaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function crearPrueba(Request $request, $id)
     {
 
@@ -47,114 +35,69 @@ class PruebaController extends Controller
           $notification = array(
             'message'       => 'Todos los usuarios que lean tu cuento podrán realizar tus quizzes',
             'alert-type'    => 'info'
-          );
-        }
+        );
+      }
 
-        return redirect()->route('pruebas.create', $prueba->id)->with($notification);
-    }
+      return redirect()->route('pruebas.create', $prueba->id)->with($notification);
+  }
 
-    public function nuevaPrueba($id)
-    {
+  public function nuevaPrueba($id)
+  {
       $prueba = Prueba::find($id);
 
       return view('pruebas.create')->with(compact('prueba'));
-    }
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storePreguntaRespuestas(Request $request, $id)
-    {
-        $correcta     = $request->get('correcta');
-        $incorrecta1  = $request->get('incorrecta1');
-        $incorrecta2  = $request->get('incorrecta2');
-        $incorrecta3  = $request->get('incorrecta3');
 
-        $pregunta = new Pregunta;
-        $pregunta->pregunta = $request->get('pregunta');
-        $pregunta->prueba_id = $id;
-        $pregunta->save();
+  public function storePreguntaRespuestas(Request $request, $id)
+  {
+    $correcta     = $request->get('correcta');
+    $incorrecta1  = $request->get('incorrecta1');
+    $incorrecta2  = $request->get('incorrecta2');
+    $incorrecta3  = $request->get('incorrecta3');
 
-        $pregunta->respuestas()->createMany([
+    $pregunta = new Pregunta;
+    $pregunta->pregunta = $request->get('pregunta');
+    $pregunta->prueba_id = $id;
+    $pregunta->save();
+
+    $pregunta->respuestas()->createMany([
           //correcta
-          [
-            'respuesta' => $correcta,
-            'correcta' => true
-          ],
+      [
+        'respuesta' => $correcta,
+        'correcta' => true
+    ],
           //incorrectas
-          [
-            'respuesta' => $incorrecta1,
-            'correcta' => false
-          ],
-          [
-            'respuesta' => $incorrecta2,
-            'correcta' => false
-          ],
-          [
-            'respuesta' => $incorrecta3,
-            'correcta' => false
-          ],
-        ]);
+    [
+        'respuesta' => $incorrecta1,
+        'correcta' => false
+    ],
+    [
+        'respuesta' => $incorrecta2,
+        'correcta' => false
+    ],
+    [
+        'respuesta' => $incorrecta3,
+        'correcta' => false
+    ],
+]);
 
-        return back()->with('status', 'Pregunta creada éxitosamente');
+    return back()->with('status', 'Pregunta creada éxitosamente');
 
-    }
+}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Prueba  $prueba
-     * @return \Illuminate\Http\Response
-     */
-    public function misPruebas($id)
-    {
-        $pruebas = Prueba::where('cuento_id',$id)->get();
+public function misPruebas($id)
+{
+    $pruebas = Prueba::where('cuento_id',$id)->get();
 
-        return view('pruebas.quizzes')->with(compact('pruebas'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Prueba  $prueba
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Prueba $prueba)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Prueba  $prueba
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Prueba $prueba)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Prueba  $prueba
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Prueba $prueba)
-    {
-        //
-    }
+    return view('pruebas.quizzes')->with(compact('pruebas'));
+}
 
     //-------------------------------------------------------
     //               Generar un random_string
     //-------------------------------------------------------
-    protected function random_string()
-    {
+protected function random_string()
+{
     $key = '';
     $keys = array_merge( range('a','z'), range(0,9) );
 
@@ -164,27 +107,55 @@ class PruebaController extends Controller
     }
 
     return $key;
-  }
+}
 
 
-  public function evaluar(Request $request, $id)
-  {
-    $resultado = new Resultado;
-    $resultado->user_id = Auth::id();
+public function evaluar(Request $request, $id)
+{
+
     $rest = array();
-    // $rest = json_decode($request, true);
     $rest = $request->toArray();
-    // dd($rest);
+
+    $puntos     = 0;
+    $aciertos   = 0;
 
     foreach ($rest['respuesta'] as $key => $value) {
         $respuesta = Respuesta::find($value);
         if ($respuesta->correcta) {
-            echo "es correcta, ";
-        }
-        else{
-            echo "incorrecta, ";
+            $puntos     = $puntos+10;
+            $aciertos   = $aciertos+1;
         }
     }
 
-  }
+    $resultado = new Resultado;
+    $resultado->user_id     = Auth::id();
+    $resultado->prueba_id   = $id;
+    $resultado->resultado   = $puntos;
+    $resultado->save();
+
+
+    if ($puntos >= 30) {
+        return redirect()
+        ->route('home')
+        ->with('aprobado', 'Sumaste '.$puntos.' puntos de lector y acertaste '.$aciertos.' preguntas.' );
+    }
+    else {
+        return redirect()
+        ->route('home')
+        ->with('reprobado', 'Acertaste '.$aciertos.' preguntas.');
+    }
+
+}
+
+
+public function misResultados()
+{
+    $userID     = Auth::id();
+    $resultados = Resultado::where('user_id', $userID)->get();
+
+    return view('resultados')->with(compact('resultados'));
+}
+
+
+
 }

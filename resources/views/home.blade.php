@@ -7,9 +7,30 @@
       @if (session('status'))
           <div class="alert alert-success col-md-12 col-sm-12 col-xs-12 text-center" role="alert">
               {{ session('status') }}
-          </div>
+          </div><br>
       @endif
 
+      @if (session('aprobado'))
+        <div class="card">
+          <div class="car-header">
+            <h3 class="text-success text-center">¡Felicidades, aprobaste!</h3>
+          </div>
+          <div class="card-body">
+            <strong class="text-center"> {{ session('aprobado') }} </strong>
+          </div>
+        </div><br>
+      @endif
+
+      @if (session('reprobado'))
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-danger text-center">Lo sentimos...</h3>
+          </div>
+          <div class="card-body">
+            <strong class="text-center"> {{ session('reprobado') }} </strong>
+          </div>
+        </div><br>
+      @endif
 
     <!-- Dashboard de moderador -->
     <div class="row justify-content-center">
@@ -125,8 +146,24 @@
           </div>
         </div>
       </div>
-    </div>
+    </div><br>
     <!-- Fin Dashboard de escritor -->
+
+
+    <!-- Dashboard de lector -->
+    <div class="card">
+      <div class="card-header">
+        Lector
+      </div>
+      <div class="card-body">
+        <ul>
+          @foreach($user->resultados as $resultado)
+          <li> {{ $resultado->resultado }} </li><span class="text-primary"> {{ $resultado->prueba->cuento->titulo }} </span>
+          @endforeach
+        </ul>
+      </div>
+    </div>
+    <!-- Fin Dashboard de lector -->
 </div>
 
 @endsection

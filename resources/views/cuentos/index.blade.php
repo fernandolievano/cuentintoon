@@ -21,12 +21,6 @@
           <img src="{{asset('img/'.$cuento->cover)}}" class="cover mx-auto d-block border border-info" alt="cover">
         </div>
 
-        <div class="card-info">
-          <span class="badge badge-pill badge-info" data-toggle="tooltip" title="Nivel de dificultad">{{$cuento->nivel}}</span>
-          <span class="badge badge-pill badge-info" data-toggle="tooltip" title="Autor">{{$cuento->autor}}</span>
-          <fecha-cuento :cuento="{{ $cuento }}" data-toggle="tooltip" title="Creado"></fecha-cuento>
-        </div>
-
         <div class="card-content">
           <div class="col-sm">
             <h2 class="display-6">{{$cuento->titulo}}</h2>
@@ -34,6 +28,12 @@
           <div class="col-sm">
             <p>{{$cuento->descripcion}}</p>
           </div>
+        </div>
+
+        <div class="card-info">
+          <span class="badge badge-pill badge-info" data-toggle="tooltip" title="Nivel de dificultad">{{$cuento->nivel}}</span>
+          <span class="badge badge-pill badge-info" data-toggle="tooltip" title="Autor">{{$cuento->autor}}</span>
+          <fecha-cuento :cuento="{{ $cuento }}" data-toggle="tooltip" title="Creado"></fecha-cuento>
         </div>
 
         <footer class="card-actions">

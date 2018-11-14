@@ -39,17 +39,22 @@
 	<div class="alert alert-success row justify-content-center">
 
 		<div class="col-md-12 col-sm-12 col-xs-12">
-			<strong>¡Felicidades, has completado la lectura!</strong>
+			<strong>Lectura completa</strong>
 		</div>
 
-		<div class="col-md-12 col-sm-12 col-xs-12">
+		@if($cantPruebas >= 1)
+			<div class="col-md-12 col-sm-12 col-xs-12">
 			<button type="button"class="btn btn-success" data-toggle="modal" data-target="#quizz">	Suma puntos de lector realizando un pequeño quizz sobre lo que leíste
 			</button>
-		</div>
+			</div>
+
+			@include('pruebas.evaluar')
+		@endif	
+		
 		
 	</div>
 
-		@include('pruebas.evaluar')
+		
 
 	
 	@else

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaginaRequest;
+use Illuminate\Http\Request;
 use App\Cuento;
 use App\Pagina;
 use App\Prueba;
 use App\Pregunta;
 use App\Respuesta;
-use Image;
+use App\Resultado;
 
 class PaginaController extends Controller
 {
@@ -25,21 +26,39 @@ class PaginaController extends Controller
 
      public function leer($id)
     {
+        $user = Auth::user();
         $cuento = Cuento::find($id);
 
         $paginas = Pagina::where('cuento_id', $id)->paginate(1);
 
-        $prueba = Prueba::where('cuento_id', $id)->get()->random();
+        $pruebas = Prueba::where('cuento_id', $id);
+        $cantPruebas = $pruebas->count();
 
-        $preguntas= Pregunta::where('prueba_id', $prueba->id)->with('respuestas')->get()->shuffle();
+        if ($cantPruebas >= 1) {
+            $prueba = Prueba::where('cuento_id', $id)->get()->random();
+            $resultados = Resultado::where('user_id', $user->id)->whereIn('resultado',[30,40,50])->get();
 
-        $paginaActual = $paginas->currentPage();
-        $ultimaPagina = $paginas->lastPage();
+            $paginaActual = $paginas->currentPage();
+            $ultimaPagina = $paginas->lastPage();
 
-        return view('paginas.index')
-                ->with(compact('cuento','paginas','paginaActual',
-                                'ultimaPagina', 'prueba', 'preguntas'))
-                    ->withPaginas($paginas);
+            return view('paginas.index')
+            ->with(compact('cuento','paginas','paginaActual',
+                'ultimaPagina', 'cantPruebas', 'prueba',
+                'user', 'resultados'))
+            ->withPaginas($paginas);   
+        }
+
+        else {
+
+            $paginaActual = $paginas->currentPage();
+            $ultimaPagina = $paginas->lastPage();
+
+            return view('paginas.index')
+            ->with(compact('cuento','paginas','paginaActual',
+                'ultimaPagina', 'cantPruebas', 'user'))
+            ->withPaginas($paginas);
+
+        }
     }
 
     /**

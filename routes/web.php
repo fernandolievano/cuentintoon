@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/mis_resultados', 'PruebaController@misResultados');
+
 Route::name('pruebas.')->prefix('quizzes/')->group(function (){
   Route::post('{cuento}/store', 'PruebaController@crearPrueba')->name('store');
   Route::post('{prueba}/pr', 'PruebaController@storePreguntaRespuestas')->name('pregunta.store');
