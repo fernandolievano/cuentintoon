@@ -18,9 +18,6 @@ class PruebaController extends Controller
     public function crearPrueba(Request $request, $id)
     {
 
-
-
-        //Crea y Guarda prueba
         $nombre         = $request->input('prueba');
         $nombre_prueba  = $this->random_string().$nombre;
         $id_usuario     = Auth::id();
@@ -139,10 +136,15 @@ public function evaluar(Request $request, $id)
         ->route('home')
         ->with('aprobado', 'Sumaste '.$puntos.' puntos de lector y acertaste '.$aciertos.' preguntas.' );
     }
+    elseif ($puntos == 0) {
+        return redirect()
+        ->route('home')
+        ->with('reprobado', 'Tuviste 0 aciertos :(' );
+    }
     else {
         return redirect()
         ->route('home')
-        ->with('reprobado', 'Acertaste '.$aciertos.' preguntas.');
+        ->with('reprobado', 'Solo acertaste '.$aciertos.' preguntas pero sumaste '.$puntos.' puntos de lector.' );
     }
 
 }

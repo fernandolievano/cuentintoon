@@ -8,11 +8,12 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{{asset('css/main.css')}}">
         <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href=" {{ asset('css/app.css') }} ">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <style>
             html, body {
-                background-color: #fff;
+                background-color: RGB(195,255,104);
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -61,6 +62,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .principal-cover{
+                width: 71%;
+            }
         </style>
     </head>
     <body>
@@ -68,20 +73,37 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}" data-toggle="tooltip" title="Mi Biblioteca">
+                            <i class="fas fa-book-reader"></i>
+                        </a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">Inicia Sesión</a>
+                        <a href="{{ route('register') }}">Registrate</a>
                     @endauth
                 </div>
             @endif
 
-            <div class="">
-              <a href="{{route('cuentos.index')}}">
-                <img class="img-thumbnail rounded mx-auto d-block" src="{{asset('img/logoCT.png')}}" alt="cover">
-              </a>
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-8 col-sm-8 col-xs-8 align-self-center">
+                        <a href="{{route('cuentos.index')}}" class="btn btn-block btn-light" data-toggle="tooltip" title="Ingresa a Cuentintoon!">
+                            <img class="principal-cover img-fluid" src="{{asset('rsc/simple_logo_ct.png')}}" alt="cover">
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-action active">En Cuentintoon! podrás</li>
+                            <li class="list-group-item list-group-item-action">Crear Cuentos</li>
+                            <li class="list-group-item list-group-item-action">Leer Cuentos</li>
+                            <li class="list-group-item list-group-item-action">Realizar Quizzes</li>
+                            <li class="list-group-item list-group-item-action">¡Y sumar puntos para ser el mejor lector del sitio!</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
+        @include('scripts.tooltip')
     </body>
 </html>

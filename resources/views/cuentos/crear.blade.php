@@ -1,5 +1,5 @@
-<div class="modal" id="crear">
-  <div class="modal-dialog">
+<div class="modal fade" id="crear">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content form-container">
       <div class="modal-header">
         <h1 class="display-4 form-header"><span class="dark-letter">C</span>rear Cuen<span class="dark-letter">t</span>o</h1>
@@ -8,35 +8,20 @@
       </div>
         {!! Form::open(['action' => 'CuentoController@store','enctype' => 'multipart/form-data', 'id' => 'form']) !!}
       <div class="modal-body">
-        <!-- Errores de validación backend -->
-        <div class="validate">
-          @if(count($errors) > 0)
-          <div class="alert alert-danger validate-error alert-dismissible fade show" role="alert">
-              <ul style="list-style-type: none;">
-                @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-                @endforeach
-              </ul>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </div>
-          @endif
-        </div>
-        <!-- Fin errores  -->
+        
+        @include('partials.errors')
 
         <div class="container-fluid">
           <div class="row justify-content-center">
             <h3>Información del cuento</h3>
-            <span class="badge badge-danger badge-form">Todos los campos son obligatorios*</span>
           </div>
           <br>
           <div class="row form-items">
             <div class="col-md-12 col-xs-12">
               {!! Form::label('titulo', 'Título del cuento', ['class' => 'form-label']) !!}
-              {!! Form::text('titulo', '', ['class' => 'form-input form-control form-control-sm','required']) !!}
+              {!! Form::text('titulo', '', ['class' => 'form-input form-control form-control-sm', 'placeholder' => 'Título original del cuento' ,'required']) !!}
             </div>
           </div>
-          {!! Form::hidden('idprofesor', $value='1', []) !!}
           <div class="row form-items">
             <div class="col-md-12 col-xs-12">
               {!! Form::label('nivel', 'Dificultad del cuento', []) !!}
@@ -62,24 +47,26 @@
                 {!! Form::radio('nivel', '5', '', ['class' => 'form-check-input','id' => 'nivel5']) !!}
                 {!! Form::label('nivel5', '5', ['class' => 'form-check-label']) !!}
               </div>
+              <span class="text-muted"> <i>Indica la complejidad de tu cuento</i> </span>
             </div>
           </div>
           <div class="row form-items">
             <div class="col-md-12 col-xs-12">
               {!! Form::label('autor', 'Autor', ['class' => 'form-label']) !!}
-              {!! Form::text('autor','', ['class' => 'form-input form-control form-control-sm','required']) !!}
+              {!! Form::text('autor','', ['class' => 'form-input form-control form-control-sm', 'placeholder' => 'Autor original del cuento *tu nombre si es un cuento propio' ,'required']) !!}
             </div>
           </div>
           <div class="row form-items">
             <div class="col-md-12 col-xs-12">
-              {!! Form::label('cover', 'Portada', ['class' => 'form-label']) !!}
+              {!! Form::label('cover', 'Foto de portada', ['class' => 'form-label']) !!}
               {!! Form::file('cover',['class' => ' form-control-sm form-control-file','required']) !!}
+              <span class="text-muted"> <i>La imagen será redimensionada a 300x300px</i> </span>
             </div>
           </div>
           <div class="row form-items">
             <div class="col-md-12 col-xs-12">
               {!! Form::label('descripcion', 'Descripción', ['class' => 'form-label']) !!}
-              {!! Form::textarea('descripcion', '', ['rows' => '3','cols' => '20' ,'class' => 'form-input cuentacaracteres form-control form-control-sm', 'maxlength' => '80','required']) !!}
+              {!! Form::textarea('descripcion', '', ['rows' => '3','cols' => '20' ,'class' => 'form-input cuentacaracteres form-control form-control-sm', 'maxlength' => '80', 'placeholder' => 'Dales a los lectores una breve descripción de tu cuento...' ,'required']) !!}
             </div>
           </div>
         </div>

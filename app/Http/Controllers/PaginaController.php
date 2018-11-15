@@ -29,14 +29,24 @@ class PaginaController extends Controller
         $user = Auth::user();
         $cuento = Cuento::find($id);
 
-        $paginas = Pagina::where('cuento_id', $id)->paginate(1);
+        $paginas = Pagina::where('cuento_id', $id)
+        ->paginate(1);
 
         $pruebas = Prueba::where('cuento_id', $id);
-        $cantPruebas = $pruebas->count();
+        $cantPruebas   = $pruebas->count();
 
         if ($cantPruebas >= 1) {
-            $prueba = Prueba::where('cuento_id', $id)->get()->random();
-            $resultados = Resultado::where('user_id', $user->id)->whereIn('resultado',[30,40,50])->get();
+
+            $prueba = Prueba::where('cuento_id', $id)
+            ->get()
+            ->random();
+
+            $resultados = Resultado::where([
+                ['user_id', $user->id],
+                ['prueba_id', $prueba->id],
+            ])
+            ->whereIn('resultado',[30,40,50])
+            ->get();
 
             $paginaActual = $paginas->currentPage();
             $ultimaPagina = $paginas->lastPage();
@@ -46,6 +56,7 @@ class PaginaController extends Controller
                 'ultimaPagina', 'cantPruebas', 'prueba',
                 'user', 'resultados'))
             ->withPaginas($paginas);   
+
         }
 
         else {

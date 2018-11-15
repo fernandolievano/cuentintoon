@@ -20,20 +20,23 @@ h1, h2, h3{
   font-family: 'Cherry Swash', cursive;
 }
 
+
 /* Top Side */
 .top-side{
   background-color: RGB(126,208,214);
-  margin-bottom: 0;
+  margin: 0;
+  border-bottom: 20px double RGB(244,252,232);
 }
 #logo-top{
-  width: 35%;
+  width: 30%;
   display: block;
-  margin: auto;
+  margin:0%;
 }
 /* Mid Side */
 .mid-side{
   margin-top: 1.5em;
 }
+
 
 /* Card Index */
 .cover{
@@ -81,7 +84,7 @@ h1, h2, h3{
 .navbar-ct{
   background-color: RGB(244,252,232);
   border: none;
-  border-top: 20px double RGB(126,208,214);
+  border-bottom: 20px double RGB(126,208,214);
   box-shadow: none;
   font-size: 20px;
 }
@@ -143,6 +146,11 @@ h1, h2, h3{
 }
 .validate-error{
   text-align: justify;
+}
+label.error{
+  color:darkred;
+  float:none;
+
 }
 /* Preview */
 .preview-container{

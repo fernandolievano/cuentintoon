@@ -2,8 +2,12 @@
 	<div class="modal-dialog modal-lg form-container">
 		<div class="modal-content">
 			@if(count($resultados)>=1)
-				<div class="modal-body">
+				<div class="modal-header">
 					<h2 class="text-center">Ya has realizado y aprobado este quizz</h2>
+					<button type="button" class="close float-right" data-dismiss="modal" name="button">
+          			<span>&times;</span>
+				</div>
+				<div class="modal-body">
 					<div class="row">
 						<div class="col-md col-sm col-xs">
 							@foreach($resultados as $resultado)
@@ -20,6 +24,8 @@
 			<form action=" {{ route('pruebas.evaluar', $prueba->id) }} " method="post">
 				<div class="modal-header">
 					<h2>Responde correctamente según lo que has leído</h2>
+					<button type="button" class="close float-right" data-dismiss="modal" name="button">
+          			<span>&times;</span>
 				</div>
 				<div class="modal-body text-left">
 					<ul class="list-unstyled">
