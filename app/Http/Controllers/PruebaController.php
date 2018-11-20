@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Prueba;
 use App\Cuento;
 use App\Pregunta;
@@ -60,22 +61,22 @@ class PruebaController extends Controller
 
     $pregunta->respuestas()->createMany([
           //correcta
-      [
+    [
         'respuesta' => $correcta,
-        'correcta' => true
+        'correcta'  => true
     ],
           //incorrectas
     [
         'respuesta' => $incorrecta1,
-        'correcta' => false
+        'correcta'  => false
     ],
     [
         'respuesta' => $incorrecta2,
-        'correcta' => false
+        'correcta'  => false
     ],
     [
         'respuesta' => $incorrecta3,
-        'correcta' => false
+        'correcta'  => false
     ],
 ]);
 
@@ -129,6 +130,10 @@ public function evaluar(Request $request, $id)
     $resultado->prueba_id   = $id;
     $resultado->resultado   = $puntos;
     $resultado->save();
+
+    $user = Auth::user();
+    $user->puntos = $puntos;
+    $user->save();
 
 
     if ($puntos >= 30) {

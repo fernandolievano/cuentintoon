@@ -18,6 +18,7 @@ class UserController extends Controller
       $validacion = $request->validate([
         'name'        => 'required|string',
         'lastname'    => 'required|string',
+        'avatar'      => 'nullable',
         'username'    => 'required|string|unique:users',
         'email'       => 'required|string|email|unique:users',
         'password'    => 'required|string|min:6|confirmed'
@@ -30,7 +31,7 @@ class UserController extends Controller
       $user->lastname   = $request->get('lastname');
       $user->username   = $request->get('username');
       $user->email      = $request->get('email');
-      $user->nivel      = 1;
+      $user->puntos     = 0;
       $user->password   = Hash::make($request->get('password'));
       $user->save();
       $user->assignRole($idrole);
@@ -39,8 +40,28 @@ class UserController extends Controller
 
     }
 
-    public function actualizar($id)
+    public function cambiarNombre()
     {
-      return "Actualizar Usuario";
+      return "cambio nombres";
+    }
+
+    public function cambiarUsername()
+    {
+      return "cambio username";
+    }
+
+    public function cambiarEmail()
+    {
+      return "cambio email";
+    }
+
+    public function cambiarPass()
+    {
+      return "cambio contraseña";
+    }
+
+    public function cambiarAvatar()
+    {
+      return "cambio avatar";
     }
 }

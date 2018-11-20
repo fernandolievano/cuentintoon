@@ -19,6 +19,15 @@ body{
 h1, h2, h3{
   font-family: 'Cherry Swash', cursive;
 }
+.bg-1{
+  background-color:  rgb(135,214,155);
+}
+.bg-2{
+  background-color: rgb(126,208,214);
+}
+.bg-3{
+  background-color: rgb(78,150,137);
+}
 
 
 /* Top Side */
@@ -32,6 +41,10 @@ h1, h2, h3{
   display: block;
   margin:0%;
 }
+.message-top{
+  margin:1em;
+}
+
 /* Mid Side */
 .mid-side{
   margin-top: 1.5em;
@@ -185,3 +198,8 @@ label.error{
   margin: auto;
 }
 
+.pagina-inspeccionar{
+  margin:0.5em;
+  border:2px solid rgb(78,150,137);
+  border-radius: 5px;
+}

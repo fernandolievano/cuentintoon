@@ -23,7 +23,9 @@
 		methods: {
 
 			since: function(d) {
+
 				return moment(d).fromNow();
+				
 			}
 
 		}

@@ -12,6 +12,9 @@
 
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav mr-auto">
+            @guest 
+            <li></li>
+            @else
             <li class="nav-item">
               <a class="nav-link" href="{{route('cuentos.create')}}" data-toggle="modal" data-target="#crear">
                 <i class="fas fa-pen-square" data-toggle="tooltip" title="Crear Cuento"></i>
@@ -22,14 +25,13 @@
                 <i class="fas fa-book-reader"></i>
               </a>
             </li>
-          </ul>
-
-          <ul class="navbar-nav text-center">
-            <h3>Mis puntos de lector 
-              <span class="badge badge-nivel">
-               {{ Auth::user()->resultados->sum('resultado') }} 
-              </span>
-            </h3>
+            <li class="nav-item" data-toggle="tooltip" title="Tus puntos de lector">
+              <h6>
+                {{ Auth::user()->username }}
+                <span class="badge badge-autor"> {{ Auth::user()->puntos }} </span>
+              </h6>
+            </li>
+            @endguest
           </ul>
 
           <!-- Right Side Of Navbar -->
@@ -37,10 +39,10 @@
             <!-- Authentication Links -->
             @guest
             <li class="nav-item">
-              <a class="nav-link iconhome" href="{{ route('login') }}">{{ __('Login') }}</a>
+              <a class="nav-link iconhome" href="{{ route('login') }}">{{ __('Inicia Sesión') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link iconhome" href="{{ route('register') }}">{{ __('Register') }}</a>
+              <a class="nav-link iconhome" href="{{ route('register') }}">{{ __('Registrate') }}</a>
             </li>
             @else
             @role('admin')
@@ -52,14 +54,14 @@
             @endrole
             <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->username }} <span class="caret"></span>
+                Cuenta <span class="caret"></span>
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
+                {{ __('Cerrar Sesión') }}
               </a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -69,6 +71,8 @@
           </li>
           @endguest
         </ul>
+
       </div>
+
     </div>
   </nav>

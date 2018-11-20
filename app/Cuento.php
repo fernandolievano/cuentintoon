@@ -19,8 +19,15 @@ class Cuento extends Model
     {
       return $this->hasMany(Pagina::class);
     }
+
     public function pruebas()
     {
       return $this->hasMany(Prueba::class);
     }
+
+    public function reportes()
+    {
+      return $this->hasMany(Reporte::class);
+    }
+
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Cuento;
+use App\Reporte;
+use App\SolicitudRol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -17,10 +20,13 @@ class AdministracionController extends Controller
   // Dashboard de Administración
   public function dashboard(){
 
-    $usuarios   = User::all();
-    $roles      = Role::all();
-    $permisos   = Permission::all();
-    return view('admin.panel')->with(compact('roles','permisos','usuarios'));
+    $usuarios     = User::all();
+    $roles        = Role::all();
+    $permisos     = Permission::all();
+    $solicitudes  = SolicitudRol::all();
+    $reportes     = Reporte::all();
+
+    return view('admin.dashboard')->with(compact('roles','permisos','usuarios','solicitudes', 'reportes'));
 
   }
 
@@ -29,12 +35,18 @@ class AdministracionController extends Controller
   public function nuevoRol(Request $request){
 
     if ( Role::create($request->all()) ) {
+
       echo "success";
+
       $notification = array(
+
         'message'     => 'Nuevo rol creado con éxito',
         'alert-type'  => 'success'
+
       );
+
     }
+
     return back()->with($notification);
 
   }
@@ -46,12 +58,18 @@ class AdministracionController extends Controller
     $role = Role::find($id);
 
     if ( $role->delete() ) {
+
       echo "error";
+
       $notification = array(
+
         'message'     => 'Un rol ha sido eliminado',
         'alert-type'  => 'error'
+
       );
+
     }
+
     return back()->with($notification);
 
   }
@@ -98,12 +116,17 @@ class AdministracionController extends Controller
     $rol->assignPermission($idper);
 
     if ( $rol->save() ) {
+
       echo "success";
+
       $notification = array(
+
         'message'     => 'Permiso asignado exitosamente',
         'alert-type'  => 'success'
+
       );
     }
+    
     return back()->with($notification);
 
   }

@@ -12,7 +12,7 @@
   </div>
   @endif
 
-  <div class="row">
+  <div class="row justify-content-between">
     @foreach($cuentos as $cuento)
     <div class="col-md-4 col-sm-4 col-xs-4">
       <div class="card-cuento">
@@ -22,10 +22,10 @@
         </div>
 
         <div class="card-content">
-          <div class="col-sm">
+          <div class="col-xs-12">
             <h2 class="display-6">{{$cuento->titulo}}</h2>
           </div>
-          <div class="col-sm">
+          <div class="col-xs-12">
             <p>{{$cuento->descripcion}}</p>
           </div>
         </div>

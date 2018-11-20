@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@php 
+  $contador = 0;
+@endphp
+
 @section('content')
 <div class="container">
  <div class="row justify-content-center">
@@ -33,15 +37,28 @@
     <div class="card-body row justify-content-center" id="pagina">
 
       @foreach($cuento->paginas as $pagina)
-      <div class="col-md-5 col-xs-12 border border-dark">
+
+      @php
+        $contador = $contador+1;
+      @endphp
+
+      <div class="col-md-8 col-sm-12 col-xs-12 pagina-inspeccionar">
        <div class="row">
          <div class=" card-content col-md-12 col-xs-12 col align-self-center">
            {!! $pagina->contenido !!}
          </div>
-         <div class="col-md-12 col-xs-12 col align-self-end">
+         <div class="col-xs-5 col-sm-5 col-md-5 text-left align-self-center">
+           <a href=" {{ route('paginas.edit', $pagina->id) }} " class="btn btn-sm btn-light">Editar</a>
+         </div>
+         <div class="col-md-2 col-sm-2 col-xs-2 text-center align-self-center">
+           <span class="badge badge-pill badge-light">
+            {{ $contador }}
+           </span>
+         </div>
+         <div class="col-md-5 col-sm-5 col-xs-5 text-right align-self-center">
            <form class="hidden" action="{{route('paginas.delete', $pagina->id)}}" method="post">
              @csrf  @method('DELETE')
-             <button type="submit" class="btn btn-sm btn-danger">Eliminar página</button>
+             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
            </form>
          </div>
        </div>
@@ -55,8 +72,8 @@
 @endsection
 
 @section('scripts')
-@include('scripts.fix-height')
 <script>
-  $("#pagina img").css("width","200px");
+  $("#pagina img").css({"width":"100%", "height":"50%"});
 </script>
+
 @endsection

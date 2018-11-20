@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Image;
 use App\Cuento;
 use App\Pagina;
+use App\Reporte;
 use Illuminate\Http\Request;
 use App\Http\Requests\CuentoRequest;
 use Illuminate\Support\Facades\Auth;
@@ -12,29 +13,19 @@ use Illuminate\Support\Facades\Auth;
 
 class CuentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $cuentos = Cuento::where('estado', 'Publicado')->paginate(6);
         return view('cuentos.index',compact('cuentos'))->withCuentos($cuentos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('cuentos.create');
     }
 
-    //-------------------------------------------------------
-    //Generar un random_string
     protected function random_string()
     {
     $key = '';
@@ -46,21 +37,12 @@ class CuentoController extends Controller
     }
 
     return $key;
-  }
+    }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CuentoRequest $request)
     {
 
-      // -------------------------------------
-      //           Guardar imagen
-      // -------------------------------------
 
       $ruta = public_path().'/img/';
       $imagenOriginal = $request->file('cover');
@@ -86,48 +68,28 @@ class CuentoController extends Controller
       return redirect()->action('CuentoController@preview',$cuento->id);
     }
 
-    /*
-      ------------------------------------------------------
-          Vista previa antes de pasar a crear páginas
-      ------------------------------------------------------
-    */
+
     public function preview($id)
     {
       $cuento = Cuento::find($id);
       return view('cuentos.preview',compact('cuento','id'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Cuento  $cuento
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $cuento = Cuento::find($id);
         return view('cuentos.show',compact('cuento','id'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cuento  $cuento
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $cuento = Cuento::find($id);
         return view('cuentos.edit',compact('cuento','id'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cuento  $cuento
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
 
@@ -148,7 +110,7 @@ class CuentoController extends Controller
 
       $cuento->titulo       = $request->get('titulo');
       $cuento->nivel        = $request->get('nivel');
-      $cuento->estado       = 'Publicado';
+      $cuento->estado       = 'En Revisión';
       $cuento->autor        = $request->get('autor');
       $cuento->descripcion  = $request->get('descripcion');
 
@@ -157,31 +119,6 @@ class CuentoController extends Controller
       return redirect()->route('cuentos.index');
     }
 
-
-    public function revision($id)
-    {
-      $cuento = Cuento::find($id);
-      $cuento->estado = 'Publicado';
-
-      if ( $cuento->update() ) {
-        echo "success";
-        $notification = array(
-          'message'     => 'El cuento ha sido publicado',
-          'alert-type'  => 'success'
-        );
-      }
-
-      return back()->with($notification);
-    }
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Cuento  $cuento
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
       $cuento = Cuento::find($id);
@@ -201,9 +138,67 @@ class CuentoController extends Controller
       return back()->with($notification);
     }
 
-    public function testingComponent ()
+    public function publicar($id)
     {
-       
-       return Cuento::orderBy('id','DESC')->get();
+      $cuento = Cuento::find($id);
+      $cuento->estado = 'Publicado';
+
+      if ( $cuento->update() ) {
+        echo "success";
+        $notification = array(
+          'message'     => 'El cuento ha sido publicado',
+          'alert-type'  => 'success'
+        );
+      }
+
+      return redirect()->route('home')->with($notification);
     }
+
+    public function inspeccionar($id)
+    {
+
+      $cuento = Cuento::find($id);
+
+      return view('usuarios.moderador.inspeccionar')->with(compact('cuento'));
+
+    }
+
+    public function reportar(Request $request, $id)
+    {
+
+      $cuento = Cuento::find($id);
+      $cuento->estado = 'Reportado';
+      $cuento->update();
+
+      $motivo = $request->get('motivo');
+
+      $reportar = Reporte::create([
+
+                  'cuento_id' => $id,
+                  'motivo'    => $motivo
+
+                  ]);
+
+      if ( $reportar ) {
+
+        echo  "warning";
+        $notification = array(
+          'message'     => 'El cuento '.$cuento->titulo.' ha sido reportado',
+          'alert-type'  => 'warning'
+        );
+
+      }
+
+      return redirect()->route('home')->with($notification);
+
+    }
+
+    public function reportes($id)
+    {
+      $cuento = Cuento::find($id);
+
+      return view('usuarios.escritor.reportes')->with(compact('cuento'));
+    }
+
+
 }

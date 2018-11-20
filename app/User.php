@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'username', 'email', 'nivel', 'password',
+        'name', 'lastname', 'username', 'email', 'puntos', 'avatar', 'password',
     ];
 
     /**
@@ -38,5 +38,10 @@ class User extends Authenticatable
     public function resultados()
     {
         return $this->hasMany(Resultado::class);
+    }
+
+    public function solicitud()
+    {
+        return $this->hasOne(SolicitudRol::class);
     }
 }
