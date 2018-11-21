@@ -25,10 +25,11 @@
                 <i class="fas fa-book-reader"></i>
               </a>
             </li>
+            <li></li>
             <li class="nav-item" data-toggle="tooltip" title="Tus puntos de lector">
-              <h6>
+              <h6 class="navbar-text">
                 {{ Auth::user()->username }}
-                <span class="badge badge-autor"> {{ Auth::user()->puntos }} </span>
+                <span class="badge badge-autor navbar-text"> {{ Auth::user()->puntos }} </span>
               </h6>
             </li>
             @endguest
