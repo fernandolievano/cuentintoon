@@ -32,7 +32,7 @@ Route::name('cuentos.')->prefix('cuento/')->group(function (){
   Route::get('{cuento}/vista-previa', 'CuentoController@preview')->name('preview');
   Route::get('inspeccionar/{cuento}', 'CuentoController@inspeccionar')->name('inspeccionar');
   Route::get('reportes/{cuento}', 'CuentoController@reportes')->name('reportes');
-  Route::put('publicar/{id}', 'CuentoController@revision')->name('publicar');
+  Route::put('publicar/{id}', 'CuentoController@publicar')->name('publicar');
   Route::post('reportar/{cuento}', 'CuentoController@reportar')->name('reportar');
 });
 

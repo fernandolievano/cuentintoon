@@ -2,10 +2,14 @@
 
 namespace App;
 
+use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
+use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
 
-class Cuento extends Model
+class Cuento extends Model implements LikeableContract
 {
+    use Likeable;
+
     protected $fillable = [
       'titulo','user_id','nivel','estado','autor','descripcion',
     ];

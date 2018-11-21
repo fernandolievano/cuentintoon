@@ -46,7 +46,7 @@ $contador = 0;
 				<div class="col-md-6 col-sm.6 col-xs-6 align-self-center text-right">
 					<form action="{{ route('cuentos.publicar', $cuento->id) }}" method="post" id="publicando">
 						@csrf @method('PUT')
-						<button type="submit" class="btn btn-block btn-sm form-button">Publicar</button>
+						<button type="submit" class="btn btn-block btn-sm form-button" form="publicando">Publicar</button>
 					</form>
 				</div>
 			</footer>

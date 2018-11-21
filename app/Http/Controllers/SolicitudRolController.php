@@ -39,9 +39,9 @@ class SolicitudRolController extends Controller
 
     	$eliminar = $solicitud->delete();
 
-    	if ( $promover && $eliminar ) {
-    		return back()->with('status', 'El usuario ha sido promovido a Escritor');
-    	}
+    
+    	return back()->with('status', 'El usuario ha sido promovido a Escritor');
+    
 
     }
 }
