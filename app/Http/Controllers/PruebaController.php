@@ -111,8 +111,11 @@ protected function random_string()
 public function evaluar(Request $request, $id)
 {
 
+
     $rest = array();
+    
     $rest = $request->toArray();
+
 
     $puntos     = 0;
     $aciertos   = 0;
@@ -125,7 +128,7 @@ public function evaluar(Request $request, $id)
         }
     }
 
-    $resultado = new Resultado;
+/*    $resultado = new Resultado;
     $resultado->user_id     = Auth::id();
     $resultado->prueba_id   = $id;
     $resultado->resultado   = $puntos;
@@ -134,22 +137,25 @@ public function evaluar(Request $request, $id)
     $user = Auth::user();
     $user->puntos = $puntos;
     $user->save();
-
+*/
 
     if ($puntos >= 30) {
-        return redirect()
+        return "aprobaste";
+/*        return redirect()
         ->route('home')
-        ->with('aprobado', 'Sumaste '.$puntos.' puntos de lector y acertaste '.$aciertos.' preguntas.' );
+        ->with('aprobado', 'Sumaste '.$puntos.' puntos de lector y acertaste '.$aciertos.' preguntas.' );*/
     }
     elseif ($puntos == 0) {
-        return redirect()
+        return "sacaste 0 puntos";
+/*        return redirect()
         ->route('home')
-        ->with('reprobado', 'Tuviste 0 aciertos :(' );
+        ->with('reprobado', 'Tuviste 0 aciertos :(' );*/
     }
     else {
-        return redirect()
+        return "desaprobaste:(";
+/*        return redirect()
         ->route('home')
-        ->with('reprobado', 'Solo acertaste '.$aciertos.' preguntas pero sumaste '.$puntos.' puntos de lector.' );
+        ->with('reprobado', 'Solo acertaste '.$aciertos.' preguntas pero sumaste '.$puntos.' puntos de lector.' );*/
     }
 
 }
@@ -161,6 +167,14 @@ public function misResultados()
     $resultados = Resultado::where('user_id', $userID)->get();
 
     return view('resultados')->with(compact('resultados'));
+}
+
+public function pruebaRandom($id)
+{
+    $prueba = Prueba::where('cuento_id', $id)->get()->random(1);
+    $idPrueba = $prueba->implode('id');
+    $preguntas = Pregunta::with('respuestas')->where('prueba_id', $idPrueba)->get()->random(5)->shuffle();
+    return $preguntas;
 }
 
 

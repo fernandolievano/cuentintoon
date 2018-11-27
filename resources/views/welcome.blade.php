@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,10 +65,12 @@
             }
 
             .principal-cover{
-                width: 71%;
+                width: 63%;
+                margin:1.5em;
             }
         </style>
     </head>
+
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
@@ -85,12 +88,12 @@
 
             <div class="container">
                 <div class="row justify-content-center align-items-center">
-                    <div class="col-md-8 col-sm-8 col-xs-8 align-self-center">
+                    <div class="col-sm-8 col-xs-8 align-self-center text-center">
                         <a href="{{route('cuentos.index')}}" class="btn btn-block btn-light" data-toggle="tooltip" title="Ingresa a Cuentintoon!">
-                            <img class="principal-cover img-fluid" src="{{asset('rsc/simple_logo_ct.png')}}" alt="cover">
+                            <img class="principal-cover" src="{{asset('rsc/simple_logo_ct.png')}}" alt="cover">
                         </a>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="col-sm-4 col-xs-4">
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-action active">En Cuentintoon! podrás</li>
                             <li class="list-group-item list-group-item-action">Crear Cuentos</li>
@@ -106,4 +109,5 @@
         <script src="{{ asset('js/app.js') }}"></script>
         @include('scripts.tooltip')
     </body>
+
 </html>

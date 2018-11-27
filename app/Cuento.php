@@ -11,7 +11,7 @@ class Cuento extends Model implements LikeableContract
     use Likeable;
 
     protected $fillable = [
-      'titulo','user_id','nivel','estado','autor','descripcion',
+      'titulo','user_id','estado','autor','descripcion',
     ];
 
     public function user()

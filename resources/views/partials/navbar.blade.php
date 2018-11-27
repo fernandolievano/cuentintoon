@@ -1,79 +1,88 @@
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-ct sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url('/cuentos') }}">
-          <i class="fas fa-home iconhome"></i>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-light navbar-expand-md bg-light justify-content-md-center justify-content-start navbar-laravel navbar-ct sticky-top">
+  <div class="container-fluid">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- Brand -->
+    <a class="navbar-brand iconhome" href="{{ url('/cuentos') }}">
+      <i class="fas fa-home"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Brand -->
 
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav mr-auto">
-            @guest 
-            <li></li>
-            @else
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('cuentos.create')}}" data-toggle="modal" data-target="#crear">
-                <i class="fas fa-pen-square" data-toggle="tooltip" title="Crear Cuento"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('home')}}" class="nav-link" data-toggle="tooltip" title="Mi Biblioteca">
-                <i class="fas fa-book-reader"></i>
-              </a>
-            </li>
-            <li></li>
-            <li class="nav-item" data-toggle="tooltip" title="Tus puntos de lector">
-              <h6 class="navbar-text">
-                {{ Auth::user()->username }}
-                <span class="badge badge-autor"> {{ Auth::user()->puntos }} </span>
-              </h6>
-            </li>
-            @endguest
-          </ul>
+    <!-- Collapse -->
+    <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="navbarSupportedContent">
 
-          <!-- Right Side Of Navbar -->
-          <ul class="navbar-nav ml-auto">
-            <!-- Authentication Links -->
-            @guest
-            <li class="nav-item">
-              <a class="nav-link iconhome" href="{{ route('login') }}">{{ __('Inicia Sesión') }}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link iconhome" href="{{ route('register') }}">{{ __('Registrate') }}</a>
-            </li>
-            @else
-            @role('admin')
-            <li class="nav-item col-xs align-self-center">
-              <a href="{{route('admin.dashboard')}}" class="nav-link btn-sm btn-outline-warning" data-toggle="tooltip" title="Administración">
-                <i class="fas fa-cogs"></i>
-              </a>
-            </li>
-            @endrole
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                Cuenta <span class="caret"></span>
-              </a>
+      <!-- Lado Izquierdo -->
+      <ul class="navbar-nav mr-auto">
+        @guest
+        <li></li>
+        @else
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-toggle="modal" data-target="#crear">
+            <i class="fas fa-pen" data-toggle="tooltip" title="Crear Cuento"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('home') }}" class="nav-link">
+            <i class="fas fa-book-reader" data-toggle="tooltip" title="Mi Biblioteca"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link disabled">
+            <i class="fas fa-user-circle"></i>
+          </span>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" title="Tus puntos de lector">
+          <h5 class="navbar-text">
+            {{ Auth::user()->username }}
+            <span class="badge badge-autor">
+             {{ Auth::user()->puntos }} 
+            </span>
+          </h5>
+        </li>
+        @endguest
+      </ul>
+      <!-- Lado Izquierdo -->
+      <!-- Lado derecho -->
 
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                {{ __('Cerrar Sesión') }}
-              </a>
-
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-              </form>
-            </div>
+      <ul class="nav flex-row justify-content-md-center justify-content-start flex-nowrap">
+        @guest
+        <li class="nav-item">
+          <a href="{{ route('login') }}" class="nav-link dark-letter" data-toggle="tooltip" title="Inicia Sesion">
+            <i class="fas fa-sign-in-alt"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('register') }}" class="nav-link dark-letter" data-toggle="tooltip" title="Registrate">
+            <i class="fas fa-user-plus"></i>
+          </a>
+        </li>
+        @else
+          @role('admin')
+          <li class="nav-item col-xs align-self-center">
+            <a href="{{route('admin.dashboard')}}" class="nav-link btn-sm btn-outline-secondary" data-toggle="tooltip" title="Administración">
+              <i class="fas fa-cogs"></i>
+            </a>
           </li>
-          @endguest
-        </ul>
+          @endrole
+        <li class="nav-item">
+          <a class="nav-link logout" data-toggle="tooltip" title="Cerrar Sesion" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">
+            <i class="fas fa-sign-out-alt"></i>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          </a>
+        </li>
+        @endguest
+      </ul>
 
-      </div>
+      <!-- Lado derecho -->
 
     </div>
-  </nav>
+    <!-- Collapse -->
+
+  </div>
+</nav>

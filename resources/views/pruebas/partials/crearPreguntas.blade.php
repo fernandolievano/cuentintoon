@@ -4,7 +4,7 @@
   <div class="pregunta border-top border-bottom"><br>
     <div class="row justify-content-center">
       <div class="col-md-8 col-sm-8 col-xs-8 alert alert-info text-center">
-        <strong>No hay límite de preguntas, pero solo se mostrarán 5 (aleatorias)</strong>
+        <strong>Debes crear mínimo 5 preguntas</strong>
       </div><br>
 
       @if( session('status') )
@@ -53,6 +53,6 @@
       <div class="col-md-6 col-xs-6">
       <a href="{{route('home')}}" class="btn btn-block form-button">Terminar Quizz</a>
       </div>
-    @endif  
+    @endif
   </div>
 {!! Form::close() !!}

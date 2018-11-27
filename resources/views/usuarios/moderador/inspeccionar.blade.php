@@ -1,4 +1,4 @@
-@php 
+@php
 $contador = 0;
 @endphp
 
@@ -22,18 +22,18 @@ $contador = 0;
 				</div>
 				<div class="col-sm-8-offset-4 col-xs-12 col-sm-12">
 					<h4 class="display-6">Portada</h4>
-					<img src="{{ asset('img/'.$cuento->cover) }}" class="img-thumbnail border border-secondary" alt="Foto de portada">
-				</div> 
+					<img src="{{ asset('img/'.$cuento->cover) }}" class="img-thumbnail mx-auto img-fluid img-inspeccionar border border-secondary" alt="Foto de portada">
+				</div>
 			</header><br>
 			<div class="row justify-content-center">
 				<div class="col-md-8-offset-4 col-sm-8 col-xs-8">
 					<h4 class="display-6">Páginas</h4>
 				</div>
 				@foreach($cuento->paginas as $pagina)
-				@php 
+				@php
 				$contador = $contador+1;
 				@endphp
-				<div class="col-md-8-offset-4 col-sm-8 col-xs-8  pagina-inspeccionar">
+				<div class="col-md-8-offset-4 col-sm-8 col-xs-8 pagina-inspeccionar" id="pagina">
 					{!! $pagina->contenido !!}
 					<span class="dark-letter"> {{ $contador }} </span>
 				</div>
@@ -54,4 +54,10 @@ $contador = 0;
 	</div>
 </div>
 @include('usuarios.moderador.reportar')
+@endsection
+
+@section('scripts')
+<script>
+	$("#pagina img").css({"width":"50%", "height":"100%"});
+</script>
 @endsection

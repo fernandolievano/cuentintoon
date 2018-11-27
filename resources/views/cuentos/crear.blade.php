@@ -22,6 +22,8 @@
   </div>
 </div>
 
+
+
 @section('scripts')
   <!-- Script para alert -->
   <script type="text/javascript">

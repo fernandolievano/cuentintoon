@@ -16,14 +16,20 @@ class CuentoController extends Controller
 
     public function index()
     {
-        $cuentos = Cuento::where('estado', 'Publicado')->paginate(6);
-        return view('cuentos.index',compact('cuentos'))->withCuentos($cuentos);
+        return view('cuentos.index');
     }
 
-
-    public function create()
+    public function leer($id)
     {
-        return view('cuentos.create');
+      $cuento = Cuento::find($id);
+
+      return view('cuentos.leer')->with(compact('cuento'));      
+    }
+
+    public function leerCuento($id)
+    {
+      $paginas = Pagina::where('cuento_id', $id)->get();
+      return $paginas;
     }
 
     protected function random_string()
@@ -48,7 +54,6 @@ class CuentoController extends Controller
       $imagenOriginal = $request->file('cover');
       $imagen = Image::make($imagenOriginal);
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
-      $imagen->resize(300,300);
       $imagen->save($ruta . $temp_name, 100);
 
       $id_usuario = Auth::id();
@@ -100,13 +105,12 @@ class CuentoController extends Controller
         $imagenOriginal = $request->file('cover');
         $imagen = Image::make($imagenOriginal);
         $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
-        $imagen->resize(300,300);
         $imagen->save($ruta . $temp_name, 100);
 
         $cuento->cover        = $temp_name;
       }
 
-      
+
 
       $cuento->titulo       = $request->get('titulo');
       $cuento->nivel        = $request->get('nivel');
@@ -198,6 +202,12 @@ class CuentoController extends Controller
       $cuento = Cuento::find($id);
 
       return view('usuarios.escritor.reportes')->with(compact('cuento'));
+    }
+
+    public function cuentos()
+    {
+      $cuentos = Cuento::where('estado', 'Publicado')->with('user')->get();
+      return $cuentos;
     }
 
 

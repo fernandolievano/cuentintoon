@@ -19,12 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('cuento/{cuento}/leer', 'CuentoController@leer');
+Route::get('get-pages/{cuento}', 'CuentoController@leerCuento');
+
 Route::name('pruebas.')->prefix('quizzes/')->group(function (){
   Route::post('{cuento}/store', 'PruebaController@crearPrueba')->name('store');
   Route::post('evaluar/{prueba}', 'PruebaController@evaluar')->name('evaluar');
   Route::post('{prueba}/pr', 'PruebaController@storePreguntaRespuestas')->name('pregunta.store');
   Route::get('nuevo/{prueba}', 'PruebaController@nuevaPrueba')->name('create');
   Route::get('{cuento}', 'PruebaController@misPruebas')->name('show');
+  Route::get('random/{cuento}', 'PruebaController@pruebaRandom');
 });
 
 Route::resource('cuentos', 'CuentoController');
@@ -49,13 +53,14 @@ Route::name('paginas.')->prefix('pagina/')->group(function () {
 
 Route::name('user.')->prefix('usuario/')->group(function () {
   Route::post('registrar', 'UserController@registro')->name('registro');
-  Route::post('cambiarNombre', 'UserController@cambiarNombre')->name('cambiar.nombre');
-  Route::post('cambiarEmail', 'UserController@cambiarEmail')->name('cambiar.email');
-  Route::post('cambiarPass', 'UserController@cambiarPass')->name('cambiar.pass');
-  Route::post('cambiarAvatar', 'UserController@cambiarAvatar')->name('cambiar.avatar');
-  Route::post('cambiarUsername', 'UserController@cambiarUsername')->name('cambiar.username');
+  Route::put('cambiarNombre', 'UserController@cambiarNombre')->name('cambiar.nombre');
+  Route::put('cambiarEmail', 'UserController@cambiarEmail')->name('cambiar.email');
+  Route::put('cambiarPass', 'UserController@cambiarPass')->name('cambiar.pass');
+  Route::put('cambiarAvatar', 'UserController@cambiarAvatar')->name('cambiar.avatar');
+  Route::put('cambiarUsuario', 'UserController@cambiarUsername')->name('cambiar.username');
   Route::post('peticionRol', 'SolicitudRolController@solicitar')->name('solicitar.rol');
   Route::get('promoverA/escritor/{id}', 'SolicitudRolController@escritor')->name('promover.escritor');
+  Route::get('mi-info', 'UserController@informacion');
 });
 
 Route::name('admin.')->prefix('administrador/')->group(function () {
@@ -67,3 +72,6 @@ Route::name('admin.')->prefix('administrador/')->group(function () {
   Route::delete('borrarPermiso/{id}', 'AdministracionController@borrarPermiso')->name('delete.permiso');
   Route::delete('borrarRol/{id}', 'AdministracionController@borrarRol')->name('delete.rol');
 });
+
+//Cuentos con vue
+Route::get('todosLosCuentos', 'CuentoController@cuentos');

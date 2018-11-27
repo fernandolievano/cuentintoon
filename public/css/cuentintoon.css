@@ -22,7 +22,7 @@ font-family: 'Gabriela', serif; Para texto en general */
 
 
 body{
-  background-color: RGB(195,255,104);
+  background-color: rgb(195,255,104);
   font-family: 'Gabriela', serif;
   color:darkslategray;
 }
@@ -39,6 +39,12 @@ h1, h2, h3{
   background-color: rgb(78,150,137);
 }
 
+.logout{
+  color:rgba(26,208,214,0.6)
+}
+.logout:hover{
+  color:rgba(26,208,214,1)
+}
 
 /* Top Side */
 .top-side{
@@ -47,9 +53,9 @@ h1, h2, h3{
   border-bottom: 20px double RGB(244,252,232);
 }
 #logo-top{
-  width: 30%;
+  width: 25%;
   display: block;
-  margin:0%;
+  margin:0;
 }
 .message-top{
   margin:1em;
@@ -62,9 +68,14 @@ h1, h2, h3{
 
 
 /* Card Index */
+
 .cover{
-  width: 95%;
+  width: 50%;
   border-radius: 50%;
+  border: 15px double rgba(78,150,137,0.9);
+}
+.cover:hover{
+  border: 5px solid rgba(78,150,137,0.9);
 }
 .card, .card-cuento{
   text-align: center;
@@ -73,10 +84,14 @@ h1, h2, h3{
   border-bottom-left-radius:10px;
   border-bottom-right-radius:10px;
   border: none;
+  margin-top: 1em;
+}
+.card-content{
+  align-items: center;
 }
 .card-actions{
-  background-color: rgb(78,150,137);
-  border-bottom: 10px solid rgba(126,208,214,0.5);
+  background-color: rgb(78,150,137,1);
+  border-bottom: 10px solid rgba(126,208,214,0.8);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -92,7 +107,8 @@ h1, h2, h3{
   color:white;
 }
 .card-link:hover{
-  background-color: rgba(126,208,214,0.5);
+  background-color: rgb(126,208,214,0.8);
+  color:white;
 }
 .card-link-delete{
   float: right;
@@ -103,9 +119,13 @@ h1, h2, h3{
   text-decoration: none;
   color:white;
 }
+.btn-circle{
+  border-radius:50%;
+}
+
 /* Navbar-top */
 .navbar-ct{
-  background-color: RGB(244,252,232);
+  background-color: rgb(244,252,232);
   border: none;
   border-bottom: 20px double RGB(126,208,214);
   box-shadow: none;
@@ -119,6 +139,7 @@ h1, h2, h3{
   width: 100%;
 }
 .iconhome{
+  color: rgb(78,150,137);
   margin:auto;
   margin-right: 1.8em;
 }
@@ -127,7 +148,6 @@ h1, h2, h3{
             Vistas de Cuento
 -----------------------------------------  */
 
-/* Vistas con Formularios */
 .form-container{
   background-color: rgb(244,252,232);
   border-radius: 10px;
@@ -187,6 +207,7 @@ label.error{
   border: 5px solid rgb(244,252,232);
   border-radius: 15px;
 }
+
 
 
 /* -----------------------------------------

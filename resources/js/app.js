@@ -9,6 +9,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.toastr = require('toastr');
+window.VuePaginate = require('vue-paginate');
+window.swal = require('sweetalert2');
+
 
 
 /**
@@ -16,14 +19,14 @@ window.toastr = require('toastr');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+Vue.use(VuePaginate);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('fecha-cuento', require('./components/FechaCuento.vue'));
 Vue.component('ajustes-usuario', require('./components/AjustesUsuario.vue'));
+Vue.component('cuentos', require('./components/Cuentos.vue'));
+Vue.component('paginas', require('./components/Paginas.vue'));
 
-
-
-window.onload = function(){
+window.onload = function() {
 
 	const app = new Vue({
 

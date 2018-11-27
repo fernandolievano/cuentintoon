@@ -53,7 +53,7 @@
       <strong>No hay solicitudes pendientes</strong>
     </div>
     @endif
-  </div> 
+  </div>
 </div>
 
 <div class="row justify-content-center">
@@ -64,7 +64,11 @@
   </div>
 
   <div class="col-md-10 col-xs-12">
-    @if( count($reportes) >= 1 )
+    @if( count($reportes) < 1 )
+    <div class=" alert alert-info">
+      <strong>No hay cuentos reportados</strong>
+    </div>
+    @else
     <table class="table table-striped table-hover">
       <thead class="bg-sblue-1 text-muted">
         <tr>
@@ -81,23 +85,23 @@
           <td> {{ $reporte->cuento->titulo }} </td>
           <td> {{ $reporte->cuento->user->username }} </td>
           <td> {{ $reporte->motivo }} </td>
-          @php 
+          @php
             $idCuento = $reporte->cuento->id;
           @endphp
           <td>
             <a href="" class="btn btn-sm btn-primary">Ver{{$idCuento}}</a>
           </td>
         </tr>
+        @else
+        <tr>
+          <td class="text-dark text-center" colspan="4">No hay cuentos reportados</td>
+        </tr>
         @endif
         @endforeach
       </tbody>
     </table>
-    @else
-    <div class=" alert alert-info">
-      <strong>No hay solicitudes pendientes</strong>
-    </div>
     @endif
-  </div> 
+  </div>
 </div>
 
 <div class="row justify-content-center">

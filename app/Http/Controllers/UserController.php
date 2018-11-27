@@ -40,19 +40,46 @@ class UserController extends Controller
 
     }
 
-    public function cambiarNombre()
+      /*//////////////////////////////////////////
+     // Métodos destinados a AjustesUsuario.vue//
+    //////////////////////////////////////////*/
+
+    public function informacion()
     {
-      return "cambio nombres";
+      $user = Auth::user();
+
+      return $user;
     }
 
-    public function cambiarUsername()
+
+    public function cambiarNombre(Request $request)
     {
-      return "cambio username";
+      $this->validate($request, [
+        'name'      => 'min:2|max:25|required',
+        'lastname'  => 'min:2|max:25|required',
+      ]);
+
+      Auth::user()->update($request->all());
+
+      return;
     }
+
+
+    public function cambiarUsername(Request $request)
+    {
+      $this->validate($request, [
+        'username' => 'min:2|max:25|required'
+      ]);
+
+      Auth::user()->update($request->all());
+
+      return;
+    }
+
 
     public function cambiarEmail()
     {
-      return "cambio email";
+      //
     }
 
     public function cambiarPass()

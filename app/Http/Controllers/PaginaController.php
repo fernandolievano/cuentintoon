@@ -20,6 +20,8 @@ class PaginaController extends Controller
         $user = Auth::user();
         $cuento = Cuento::find($id);
 
+        $pags = $cuento->paginas()->get();
+
         $paginas = Pagina::where('cuento_id', $id)
         ->paginate(1);
 
@@ -33,7 +35,7 @@ class PaginaController extends Controller
             ->random();
 
             if ( $user ) {
-            
+
                 $resultados = Resultado::where([
                     ['user_id', $user->id],
                     ['prueba_id', $prueba->id],
@@ -49,8 +51,8 @@ class PaginaController extends Controller
             return view('paginas.index')
             ->with(compact('cuento','paginas','paginaActual',
                 'ultimaPagina', 'cantPruebas', 'prueba',
-                'user', 'resultados'))
-            ->withPaginas($paginas);   
+                'user', 'resultados', 'pags'))
+            ->withPaginas($paginas);
 
         }
 
@@ -61,7 +63,7 @@ class PaginaController extends Controller
 
             return view('paginas.index')
             ->with(compact('cuento','paginas','paginaActual',
-                'ultimaPagina', 'cantPruebas', 'user'))
+                'ultimaPagina', 'cantPruebas', 'user', 'pags'))
             ->withPaginas($paginas);
 
         }
@@ -158,5 +160,10 @@ class PaginaController extends Controller
         }
 
         return back()->with($notification);
+    }
+
+    public function getPaginas()
+    {
+      // $cuento
     }
 }

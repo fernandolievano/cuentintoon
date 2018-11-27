@@ -19,6 +19,12 @@ class CreatePreguntasTable extends Migration
             $table->integer('prueba_id')->unsigned();
             $table->timestamps();
 
+            $table->foreign('prueba_id')
+                    ->references('id')
+                    ->on('pruebas')
+                    ->onDelete('cascade');
+
+
         });
     }
 

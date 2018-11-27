@@ -18,7 +18,7 @@
               <div class="col-md-12 col-xs-12">
                 {!! Form::label('nivel', 'Dificultad del cuento', []) !!}
               </div>
-              <div class="col-md-12 col-xs-12">
+              <div class="col-md-12 col-xs-12" data-toggle="tooltip" title="Indica a los lectores la complejidad de tu cuento">
                 <div class="form-check form-check-inline">
                   {!! Form::radio('nivel', '1', '', ['class' => 'form-check-input','id' => 'nivel1']) !!}
                   {!! Form::label('nivel1', '1', ['class' => 'form-check-label']) !!}
@@ -62,6 +62,7 @@
             </div>
           </div>
         </div>
+
         <div class="modal-footer">
           {!! Form::submit('¡Crear Cuento!', ['class' => 'btn form-button','id' => 'btn-validate']) !!}
         </div>

@@ -2,24 +2,25 @@
 
 @section('content')
 <div class="pages-container container">
+
 	<div class="page-body">
 		@foreach($paginas as $pagina)
 
 		@guest
-			
-			<div class="alert alert-info row justify-content-center">
-				<div class="col-xs-12">
-					Recuerde tener siempre una buena lectura comprensiva :)
-				</div>
+
+		<div class="alert alert-info row justify-content-center">
+			<div class="col-xs-12">
+				Recuerde tener siempre una buena lectura comprensiva :)
 			</div>
+		</div>
 
 		@else
 
-			@if( $cuento->user_id == Auth::id() )
+		@if( $cuento->user_id == Auth::id() )
 
-				@include('paginas.partials.options')
+		@include('paginas.partials.options')
 
-			@endif
+		@endif
 
 		@endguest
 
@@ -36,7 +37,6 @@
 		@endforeach
 	</div>
 
-	
 	@if($paginaActual == $ultimaPagina)
 	<div class="alert alert-success row justify-content-center">
 
@@ -44,26 +44,24 @@
 			<strong>Lectura completa</strong>
 		</div>
 		@guest
-
-			<a href=" {{ route('register') }} " class= "btn btn-success" >
-				Registrate y suma puntos de lector realizando un pequeño quizz sobre lo que leíste
-			</a>
+		<a href=" {{ route('register') }} " class= "btn btn-success" >
+			Registrate y suma puntos de lector realizando un pequeño quizz sobre lo que leíste
+		</a>
 		@else
 		@if($cantPruebas >= 1)
-			<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="col-md-12 col-sm-12 col-xs-12">
 			<button type="button"class="btn btn-success" data-toggle="modal" data-target="#quizz">	Suma puntos de lector realizando un pequeño quizz sobre lo que leíste
 			</button>
-			</div>
-
-			@include('pruebas.evaluar')
-		@endif	
+		</div>
+		@include('pruebas.evaluar')
+		@endif
 		@endguest
-		
+
 	</div>
-	@endif		
+	@endif
 
 
-	
+
 
 	<div class="row justify-content-end">
 		<div class="col-md-12 col-sm-12 col-xs-12 paginate-links">
@@ -72,5 +70,6 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 @endsection

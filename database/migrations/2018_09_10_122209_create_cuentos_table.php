@@ -17,12 +17,18 @@ class CreateCuentosTable extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->string('cover')->nullable();
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->string('nivel');
             $table->string('estado')->nullable();
             $table->string('descripcion');
             $table->string('autor');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+
         });
     }
 

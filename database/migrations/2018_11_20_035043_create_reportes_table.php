@@ -18,6 +18,12 @@ class CreateReportesTable extends Migration
             $table->string('motivo');
             $table->integer('cuento_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('cuento_id')
+                    ->references('id')
+                    ->on('cuentos')
+                    ->onDelete('cascade');
+
         });
     }
 
