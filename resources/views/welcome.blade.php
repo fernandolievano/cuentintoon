@@ -65,8 +65,8 @@
             }
 
             .principal-cover{
-                width: 63%;
-                margin:1.5em;
+                width: 80%;
+                margin: 3.2em;
             }
         </style>
     </head>
@@ -89,8 +89,8 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-sm-8 col-xs-8 align-self-center text-center">
-                        <a href="{{route('cuentos.index')}}" class="btn btn-block btn-light" data-toggle="tooltip" title="Ingresa a Cuentintoon!">
-                            <img class="principal-cover" src="{{asset('rsc/simple_logo_ct.png')}}" alt="cover">
+                        <a href="{{route('cuentos.index')}}" class="btn btn-block btn-light text-center" data-toggle="tooltip" title="Ingresa a Cuentintoon!">
+                            <img class="principal-cover" src="{{asset('rsc/simple_logo_ct_slim.png')}}" alt="cover">
                         </a>
                     </div>
                     <div class="col-sm-4 col-xs-4">

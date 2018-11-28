@@ -25,7 +25,7 @@
     @include('partials.navbar')
 
     <div class="container-fluid top-side">
-      <img src="{{asset('rsc/simple_logo_ct.png')}}" class="img-fluid mx-auto d-block" id="logo-top" alt="center">
+      <img src="{{asset('rsc/simple_logo_ct_slim.png')}}" class="img-fluid mx-auto d-block" id="logo-top" alt="center">
     </div>
 
     <main class="mid-side container-fluid">

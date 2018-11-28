@@ -28,33 +28,32 @@
             <i class="fas fa-book-reader" data-toggle="tooltip" title="Mi Biblioteca"></i>
           </a>
         </li>
-        <li class="nav-item">
-          <span class="nav-link disabled">
-            <i class="fas fa-user-circle"></i>
-          </span>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" title="Tus puntos de lector">
-          <h5 class="navbar-text">
-            {{ Auth::user()->username }}
-            <span class="badge badge-autor">
-             {{ Auth::user()->puntos }} 
-            </span>
-          </h5>
-        </li>
         @endguest
       </ul>
       <!-- Lado Izquierdo -->
+      <ul class="navbar-nav mx-auto">
+        @guest
+        <li></li>
+        @else
+        <li class="nav-item" data-toggle="tooltip" title="Tus puntos de lector">
+            <span class="badge badge-lg badge-autor">
+              <i class="fas fa-user-circle"></i>
+             {{ Auth::user()->puntos }} 
+            </span>
+        </li>
+        @endguest
+      </ul>
       <!-- Lado derecho -->
 
       <ul class="nav flex-row justify-content-md-center justify-content-start flex-nowrap">
         @guest
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link dark-letter" data-toggle="tooltip" title="Inicia Sesion">
+          <a href="{{ route('login') }}" class="nav-link sign" data-toggle="tooltip" title="Inicia Sesion">
             <i class="fas fa-sign-in-alt"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('register') }}" class="nav-link dark-letter" data-toggle="tooltip" title="Registrate">
+          <a href="{{ route('register') }}" class="nav-link sign" data-toggle="tooltip" title="Registrate">
             <i class="fas fa-user-plus"></i>
           </a>
         </li>
@@ -67,7 +66,7 @@
           </li>
           @endrole
         <li class="nav-item">
-          <a class="nav-link logout" data-toggle="tooltip" title="Cerrar Sesion" href="{{ route('logout') }}"
+          <a class="nav-link sign" data-toggle="tooltip" title="Cerrar Sesion" href="{{ route('logout') }}"
           onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">
             <i class="fas fa-sign-out-alt"></i>
