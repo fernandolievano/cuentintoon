@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-12 col-xs-12">
-        <h2 class="display-5" v-text="cuento.titulo"  id="textoPagina"></h2> <span class="badge badge-primary"> {{pruebaID}} </span>
+        <h2 class="display-5" v-text="cuento.titulo"  id="textoPagina"></h2>
       </div>
     </div>
     <hr>
@@ -160,6 +160,7 @@ export default {
     },
 
     evaluar: function(){
+      $('#quizzCuento').modal('hide');
       swal({
         title: 'Felicidades',
         text: 'Aprobaste la prueba y sumaste 50 puntos de lector',

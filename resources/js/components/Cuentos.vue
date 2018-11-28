@@ -10,7 +10,7 @@
               <div class="card-body text-center">
                 <button
                   type="button" class="btn btn-sm btn-light btn-circle float-right"
-                  name="fav" title="Añadir a favoritos" @click.prevent="favorito"
+                  name="fav" title="Añadir a favoritos" @click.prevent="favorito(cuento.titulo)"
                   >
                   <i class="far fa-star"></i>
                 </button>
@@ -30,11 +30,11 @@
                 </div>
               </div>
               <div class="card-footer card-actions text-center">
-                <a :href="leerUrl+cuento.id" class="btn btn-sm card-link" title="Leer Cuento">
+                <!-- <a :href="leerUrl+cuento.id" class="btn btn-sm card-link" title="Leer Cuento">
                   <i class="fas fa-book-open"></i>
-                </a>
-                <a :href="'cuento/'+cuento.id+'/leer'" class="btn btn-sm card-link" v-tooltip="messageLeer">
-                  Leer con vue
+                </a> -->
+                <a :href="'cuento/'+cuento.id+'/leer'" class="btn btn-sm card-link" title="Leer">
+                  <i class="fas fa-book-open"></i>
                 </a>
               </div>
             </div>
@@ -47,7 +47,10 @@
       <nav class="nav justify-content-center">
         <paginate-links
         for="cuentos"
-        :classes="{'ul': 'pagination', 'li': 'page-item', 'a': 'page-link'}">
+        :classes="{
+        'ul': 'pagination',
+        'li': 'page-item', 
+        'a' : 'page-link'}">
         </paginate-links>
       </nav>
     </div>
@@ -67,6 +70,7 @@ import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 Vue.directive('tooltip', VTooltip)
 Vue.directive('close-popover', VClosePopover)
 Vue.component('v-popover', VPopover)
+
 
 moment.locale('es');
 
@@ -88,8 +92,6 @@ export default {
       cuentos : [],
       paginate: ['cuentos'],
       leerUrl : '/pagina/leer/',
-      fav: false,
-      messageLeer: 'Leer el cuento'
     }
 
   },
@@ -109,11 +111,12 @@ export default {
       return moment(date).fromNow();
     },
 
-    favorito: function(){
-      this.fav = true;
-      if (this.fav) {
-        alert('Añadido a mis favoritos')
-      }
+    favorito: function(nombre){
+      swal({
+        text: 'Agregaste '+nombre+' a tus cuentos favoritos',
+        type: 'success',
+        confirmButtonText: 'Ok'
+      });
     },
 
   }

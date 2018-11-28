@@ -7,9 +7,10 @@
 
   <div class="card-body">
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center row align-items-start">
 
-      <div class="col-md-6 col-sm-8 col-xs-12 align-self-center">
+      <div class="col-md-6 col-sm-8 col-xs-12">
+
         @if(count($user->resultados) >= 1)
 
         <table class="table table-sm table-hover">
@@ -45,9 +46,11 @@
         </div>
         @endif
 
+
+
       </div>
 
-      <div class="col-md-6 col-sm-8 col-xs-12 align-self-center">
+      <div class="col-md-6 col-sm-8 col-xs-12">
 
         <table class="table table-sm table-hover">
           <thead class="bg-3 text-light">
@@ -64,32 +67,32 @@
               <td>Caperucita Roja</td>
               <td>
                 <button
-                  type="button" class="btn btn-sm form-button btn-circle float-right"
-                  name="fav" title="Quitar de favoritos" data-toogle="tooltip"
-                  >
-                  <i class="far fa-star"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>El mago de Oz</td>
-              <td>
-                <button
-                  type="button" class="btn btn-sm form-button btn-circle float-right"
-                  name="fav" title="Quitar de favoritos" data-toogle="tooltip" 
-                  >
-                  <i class="far fa-star"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-
-    </div>
+                type="button" class="btn btn-sm form-button btn-circle float-right"
+                name="fav" title="Quitar de favoritos" data-toogle="tooltip"
+                >
+                <i class="far fa-star"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>El mago de Oz</td>
+            <td>
+              <button
+              type="button" class="btn btn-sm form-button btn-circle float-right"
+              name="fav" title="Quitar de favoritos" data-toogle="tooltip" 
+              >
+              <i class="far fa-star"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
 
 </div>
-    <!-- Fin Dashboard de lector -->
+
+</div>
+
+</div>
+<!-- Fin Dashboard de lector -->

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card form-container">
                 <div class="card-header">{{ __('Registrate') }}</div>
 
                 <div class="card-body">
@@ -91,7 +91,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn form-button btn-block">
                                     {{ __('Aceptar') }}
                                 </button>
                             </div>

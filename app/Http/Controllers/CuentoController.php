@@ -54,6 +54,7 @@ class CuentoController extends Controller
       $imagenOriginal = $request->file('cover');
       $imagen = Image::make($imagenOriginal);
       $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
+        $imagen->resize(300,300);
       $imagen->save($ruta . $temp_name, 100);
 
       $id_usuario = Auth::id();
@@ -105,6 +106,7 @@ class CuentoController extends Controller
         $imagenOriginal = $request->file('cover');
         $imagen = Image::make($imagenOriginal);
         $temp_name = $this->random_string() . '.' . $imagenOriginal->getClientOriginalExtension();
+          $imagen->resize(300,300);
         $imagen->save($ruta . $temp_name, 100);
 
         $cuento->cover        = $temp_name;
