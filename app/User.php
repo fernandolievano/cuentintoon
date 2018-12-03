@@ -21,7 +21,7 @@ class User extends Authenticatable implements LikerContract
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'username', 'email', 'puntos', 'avatar', 'password',
+        'name', 'lastname', 'username', 'email', 'puntos', 'avatar', 'password', 'nivel'
     ];
 
     /**

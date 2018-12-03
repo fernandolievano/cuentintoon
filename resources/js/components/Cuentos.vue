@@ -2,7 +2,9 @@
 
   <div class="row justify-content-center">
 
-    <div class="col-sm-12 col-xs-12">
+    <ranking></ranking>
+
+    <div class="col-md-10 col-sm-10 col-xs-12">
       <paginate name="cuentos" :list="cuentos" :per="3">
         <div class="row justify-content-center">
           <div class="col-md-4 col-sm-6 col-xs-12" v-for="cuento in paginated('cuentos')">
@@ -30,12 +32,14 @@
                 </div>
               </div>
               <div class="card-footer card-actions text-center">
-                <!-- <a :href="leerUrl+cuento.id" class="btn btn-sm card-link" title="Leer Cuento">
-                  <i class="fas fa-book-open"></i>
-                </a> -->
-                <a :href="'cuento/'+cuento.id+'/leer'" class="btn btn-sm card-link" title="Leer">
+                <a :href="leerUrl+cuento.id" class="btn btn-sm card-link" title="Leer Cuento">
                   <i class="fas fa-book-open"></i>
                 </a>
+
+                <!-- En desarrollo -->
+                <!-- <a :href="'cuento/'+cuento.id+'/leer'" class="btn btn-sm card-link" title="Leer">
+                  <i class="fas fa-book-open"></i>
+                </a> -->
               </div>
             </div>
           </div>
@@ -65,11 +69,7 @@
 
 import axios  from 'axios';
 import moment from 'moment';
-import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
-
-Vue.directive('tooltip', VTooltip)
-Vue.directive('close-popover', VClosePopover)
-Vue.component('v-popover', VPopover)
+import ranking from './Ranking.vue';
 
 
 moment.locale('es');
@@ -94,6 +94,10 @@ export default {
       leerUrl : '/pagina/leer/',
     }
 
+  },
+
+  components: {
+    ranking
   },
 
   methods: {

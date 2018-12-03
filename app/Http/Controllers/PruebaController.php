@@ -128,7 +128,7 @@ public function evaluar(Request $request, $id)
         }
     }
 
-/*    $resultado = new Resultado;
+   $resultado = new Resultado;
     $resultado->user_id     = Auth::id();
     $resultado->prueba_id   = $id;
     $resultado->resultado   = $puntos;
@@ -137,25 +137,39 @@ public function evaluar(Request $request, $id)
     $user = Auth::user();
     $user->puntos = $puntos;
     $user->save();
-*/
+
+    if ($user->puntos >= 150 && $user->puntos < 500) {
+        $user->nivel = 'Revelación';
+        $user->save();
+    }
+    elseif ($user->puntos >= 500 && $user->puntos < 1000) {
+        $user->nivel = 'Promedio';
+        $user->save();
+    }
+    elseif ($user->puntos >= 1000 && $user->puntos < 2000) {
+        $user->nivel = 'Nerd';
+        $user->save();
+    }
+    elseif ($user->puntos >= 3000) {
+        $user->nivel = 'Librófilo';
+        $user->save();
+    }
+
 
     if ($puntos >= 30) {
-        return "aprobaste";
-/*        return redirect()
+       return redirect()
         ->route('home')
-        ->with('aprobado', 'Sumaste '.$puntos.' puntos de lector y acertaste '.$aciertos.' preguntas.' );*/
+        ->with('aprobado', 'Sumaste '.$puntos.' puntos de lector y acertaste '.$aciertos.' preguntas.' );
     }
     elseif ($puntos == 0) {
-        return "sacaste 0 puntos";
-/*        return redirect()
+       return redirect()
         ->route('home')
-        ->with('reprobado', 'Tuviste 0 aciertos :(' );*/
+        ->with('reprobado', 'Tuviste 0 aciertos, intenta de nuevo :(' );
     }
     else {
-        return "desaprobaste:(";
-/*        return redirect()
+       return redirect()
         ->route('home')
-        ->with('reprobado', 'Solo acertaste '.$aciertos.' preguntas pero sumaste '.$puntos.' puntos de lector.' );*/
+        ->with('reprobado', 'Solo acertaste '.$aciertos.' preguntas pero sumaste '.$puntos.' puntos de lector.' );
     }
 
 }

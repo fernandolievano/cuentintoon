@@ -32,6 +32,7 @@ class UserController extends Controller
       $user->username   = $request->get('username');
       $user->email      = $request->get('email');
       $user->puntos     = 0;
+      $user->nivel      = 'Aficionado';
       $user->password   = Hash::make($request->get('password'));
       $user->save();
       $user->assignRole($idrole);

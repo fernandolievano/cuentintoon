@@ -28,21 +28,18 @@
             <i class="fas fa-book-reader" data-toggle="tooltip" title="Mi Biblioteca"></i>
           </a>
         </li>
-        @endguest
-      </ul>
-      <!-- Lado Izquierdo -->
-      <ul class="navbar-nav mx-auto">
-        @guest
-        <li></li>
-        @else
-        <li class="nav-item" data-toggle="tooltip" title="Tus puntos de lector">
+        <li class="nav-item navbar-text" data-toggle="tooltip" title="Tus puntos de lector">
+            <span class="badge badge-lg badge-light">
+            <i class="fas fa-user-circle"></i>
+            {{ Auth::user()->nivel }}
+            </span>
             <span class="badge badge-lg badge-autor">
-              <i class="fas fa-user-circle"></i>
-             {{ Auth::user()->puntos }} 
+              {{ Auth::user()->puntos }} 
             </span>
         </li>
         @endguest
       </ul>
+      <!-- Lado Izquierdo -->
       <!-- Lado derecho -->
 
       <ul class="nav flex-row justify-content-md-center justify-content-start flex-nowrap">

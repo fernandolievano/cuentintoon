@@ -13,7 +13,6 @@ window.VuePaginate = require('vue-paginate');
 window.swal = require('sweetalert2');
 
 
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -25,6 +24,7 @@ Vue.component('fecha-cuento', require('./components/FechaCuento.vue'));
 Vue.component('ajustes-usuario', require('./components/AjustesUsuario.vue'));
 Vue.component('cuentos', require('./components/Cuentos.vue'));
 Vue.component('paginas', require('./components/Paginas.vue'));
+Vue.component('ranking', require('./components/Ranking.vue'));
 
 window.onload = function() {
 

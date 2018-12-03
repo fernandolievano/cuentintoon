@@ -44,13 +44,14 @@
 			<strong>Lectura completa</strong>
 		</div>
 		@guest
-		<a href=" {{ route('register') }} " class= "btn btn-success" >
-			Registrate y suma puntos de lector realizando un pequeño quizz sobre lo que leíste
+		<a href=" {{ route('register') }} " class= "btn btn-success">
+			Realizar Quizz
 		</a>
 		@else
 		@if($cantPruebas >= 1)
-		<div class="col-md-12 col-sm-12 col-xs-12">
-			<button type="button"class="btn btn-success" data-toggle="modal" data-target="#quizz">	Suma puntos de lector realizando un pequeño quizz sobre lo que leíste
+		<div class="col-md-12 col-sm-12 col-xs-12" data-toggle="tooltip" title="Suma puntos de lector realizando este pequeño quizz">
+			<button type="button"class="btn btn-success" data-toggle="modal" data-target="#quizz">
+				Quizz
 			</button>
 		</div>
 		@include('pruebas.evaluar')

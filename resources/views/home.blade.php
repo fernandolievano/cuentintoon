@@ -21,8 +21,8 @@
   @role('lector')
     @include('usuarios.lector')
   @endrole
-  <br><br>
-
+  <br>
+  <hr>
   <ajustes-usuario></ajustes-usuario>
 
 </div>
