@@ -1,13 +1,10 @@
 <template lang="html">
 
   <div class="row justify-content-center">
-
-    <ranking></ranking>
-
-    <div class="col-md-10 col-sm-10 col-xs-12">
+    <div class="col-md-11 col-sm-12 col-xs-12">
       <paginate name="cuentos" :list="cuentos" :per="3">
-        <div class="row justify-content-center">
-          <div class="col-md-4 col-sm-6 col-xs-12" v-for="cuento in paginated('cuentos')">
+        <div class="row justify-content-between">
+          <div class="col-md-5 col-sm-6 col-xs-12" v-for="cuento in paginated('cuentos')">
             <div class="card card-cuento">
               <div class="card-body text-center">
                 <button
@@ -69,7 +66,6 @@
 
 import axios  from 'axios';
 import moment from 'moment';
-import ranking from './Ranking.vue';
 
 
 moment.locale('es');
@@ -95,11 +91,7 @@ export default {
     }
 
   },
-
-  components: {
-    ranking
-  },
-
+  
   methods: {
 
     index: function(){
