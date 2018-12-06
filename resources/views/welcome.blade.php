@@ -63,43 +63,115 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-
-            .principal-cover{
-                width: 80%;
-                margin: 3.2em;
+            .log{
+                background-color:rgba(0,0,0,0.9);
+                border-radius:15px;
+                color:rgb(244,252,232);
+                padding:1.5em;
             }
+            .tips{
+                border-radius:15px;
+                color:rgb(78,150,137);
+                padding:1.5em;
+                background-image: url( '{{ asset('/rsc/logo_min.png') }}' );
+                background-position: bottom;
+                background-repeat: no-repeat;
+                background-size:contain;
+                background-color:rgba(244,252,232);
+                opacity:0.9;
+            }
+            /* h1,h2,h3{
+                font-family: 'Cherry Swash', cursive;
+            } */
+            .badge-autor{
+                background-color: rgb(78,150,137);
+                color:white;
+            }
+            .badge-nivel{
+                background-color: rgb(126,208,214);
+                color:white;
+            }
+        </style>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Cherry+Swash:700|Gabriela');
         </style>
     </head>
 
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links ">
                     @auth
                         <a href="{{ url('/home') }}" data-toggle="tooltip" title="Mi Biblioteca">
                             <i class="fas fa-book-reader"></i>
                         </a>
                     @else
-                        <a href="{{ route('login') }}">Inicia Sesión</a>
-                        <a href="{{ route('register') }}">Registrate</a>
+                        <a href="{{ route('login') }}" data-toggle="tooltip" title="Iniciar Sesión">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                        <a href="{{ route('register') }}" data-toggle="tooltip" title="Registrarse">
+                            <i class="fas fa-user-plus"></i>
+                        </a>
                     @endauth
                 </div>
             @endif
 
             <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-sm-8 col-xs-8 align-self-center text-center">
-                        <a href="{{route('cuentos.index')}}" class="btn btn-block btn-light text-center" data-toggle="tooltip" title="Ingresa a Cuentintoon!">
-                            <img class="principal-cover" src="{{asset('rsc/simple_logo_ct_slim.png')}}" alt="cover">
-                        </a>
+                <div class="row justify-content-between">
+                    <div class="col-md-7 col-sm-7 col-xs-12 tips">
+                        <ul class="list-unstyled text-dark">
+                            <li>
+                                <h2 class="display-6">
+                                    <i class="fas fa-pen text-info"></i>  Crea Cuentos
+                                </h2>
+                            </li>
+                            <hr>
+                            <li>
+                                <h2 class="display-6">
+                                    <i class="fas fa-book-open text-info"></i>  Lee Cuentos
+                                </h2>
+                            </li>
+                            <hr>
+                            <li>
+                                <h2 class="display-6">
+                                    <i class="fas fa-question text-info"></i> Realiza Quizzes
+                                </h2>
+                            </li>
+                            <hr>
+                            <li>
+                                <h2 class="display-6">
+                                    <i class="fas fa-trophy text-info"></i> ¡Y suma puntos para ser el mejor lector del sitio!
+                                </h2>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-sm-4 col-xs-4">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-action active">En Cuentintoon! podrás</li>
-                            <li class="list-group-item list-group-item-action">Crear Cuentos</li>
-                            <li class="list-group-item list-group-item-action">Leer Cuentos</li>
-                            <li class="list-group-item list-group-item-action">Realizar Quizzes</li>
-                            <li class="list-group-item list-group-item-action">¡Y sumar puntos para ser el mejor lector del sitio!</li>
+                    <div class="col-md-4 col-sm-4 col-xs-12 log text-left">
+                        <h2 class="display-6">El lugar donde vas a poder dar vida a todas esas historias que pasan por tu cabeza</h2>
+                        <hr>
+                        <h4 class="display-6">Únete a Cuentintoon!</h4>
+                        <ul class="list-unstyled">
+                        @if (Route::has('login'))
+                            @auth
+                            <li>
+                                <h1 class="display-6">
+                                    <a href=" {{ route('cuentos.index') }} " class="badge badge-pill badge-info btn-block">
+                                        Ingresar
+                                    </a>
+                                </h1> 
+                            </li>
+                            @else
+                            <li>
+                                <h1 class="display-6">
+                                    <a href=" {{ route('register') }} " class="badge badge-pill badge-info btn-block">Registrarse</a>
+                                </h1>
+                            </li>
+                            <li>
+                                <h1 class="display-6">
+                                    <a href=" {{ route('login') }} " class="btn badge badge-pill btn-outline-light btn-block">Iniciar Sesión</a>
+                                </h1>
+                            </li>
+                            @endauth
+                        @endif   
                         </ul>
                     </div>
                 </div>

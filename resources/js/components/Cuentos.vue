@@ -1,7 +1,8 @@
 <template lang="html">
 
   <div class="row justify-content-center">
-    <div class="col-md-11 col-sm-12 col-xs-12">
+    <ranking></ranking>
+    <div class="col-md-10 col-sm-12 col-xs-12">
       <paginate name="cuentos" :list="cuentos" :per="3">
         <div class="row justify-content-between">
           <div class="col-md-5 col-sm-6 col-xs-12" v-for="cuento in paginated('cuentos')">
@@ -63,7 +64,7 @@
 
 
 <script>
-
+import ranking from './Ranking';
 import axios  from 'axios';
 import moment from 'moment';
 
@@ -92,6 +93,10 @@ export default {
 
   },
   
+  components:{
+    ranking
+  },
+
   methods: {
 
     index: function(){

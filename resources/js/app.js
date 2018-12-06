@@ -11,6 +11,9 @@ window.Vue = require('vue');
 window.toastr = require('toastr');
 window.VuePaginate = require('vue-paginate');
 window.swal = require('sweetalert2');
+import { Scrollspy } from 'bootstrap-vue/es/directives';
+
+
 
 
 /**
@@ -18,6 +21,7 @@ window.swal = require('sweetalert2');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.use(Scrollspy);
 Vue.use(VuePaginate);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('fecha-cuento', require('./components/FechaCuento.vue'));

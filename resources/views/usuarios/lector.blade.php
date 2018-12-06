@@ -63,30 +63,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Caperucita Roja</td>
-              <td>
-                <button
-                type="button" class="btn btn-sm form-button btn-circle float-right"
-                name="fav" title="Quitar de favoritos" data-toogle="tooltip"
-                >
-                <i class="far fa-star"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>El mago de Oz</td>
-            <td>
-              <button
-              type="button" class="btn btn-sm form-button btn-circle float-right"
-              name="fav" title="Quitar de favoritos" data-toogle="tooltip" 
-              >
-              <i class="far fa-star"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </tbody>
+        </table>
 
   </div>
 

@@ -147,7 +147,7 @@ public function evaluar(Request $request, $id)
         $user->save();
     }
     elseif ($user->puntos >= 1000 && $user->puntos < 2000) {
-        $user->nivel = 'Nerd';
+        $user->nivel = 'Avanzado';
         $user->save();
     }
     elseif ($user->puntos >= 3000) {

@@ -19,10 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/cuentos', 'CuentoController@index')->name('cuentos.index');
+Route::get('/top', 'UserController@topUsuarios');
 Route::get('cuento/{cuento}/leer', 'CuentoController@leer');
 Route::get('get-pages/{cuento}', 'CuentoController@leerCuento');
 Route::get('/leer/{cuento}/','PaginaController@leer')->name('paginas.read');
-Route::post('registrar', 'UserController@registro')->name('registro');
+Route::post('registrar', 'UserController@registro')->name('user.registro');
 
 Route::group(['middleware' => 'auth'], function(){
   Route::name('pruebas.')->prefix('quizzes/')->group(function (){
@@ -34,7 +36,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('random/{cuento}', 'PruebaController@pruebaRandom');
   });
 
-  Route::resource('cuentos', 'CuentoController');
+  Route::resource('cuentos', 'CuentoController')->except('index');
   Route::name('cuentos.')->prefix('cuento/')->group(function (){
     Route::get('{cuento}/vista-previa', 'CuentoController@preview')->name('preview');
     Route::get('inspeccionar/{cuento}', 'CuentoController@inspeccionar')->name('inspeccionar');

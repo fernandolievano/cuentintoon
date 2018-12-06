@@ -46,9 +46,6 @@
                 </form>
               </td>
               <td>
-                <a href="{{route('pruebas.show', $cuento->id)}}" class="btn btn-block btn-sm btn-xs form-button">Quizzes de {{ $cuento->titulo }}</a>
-              </td>
-              <td>
                 <form class="hidden" action="{{route('cuentos.destroy', $cuento->id)}}" method="post">
                   @csrf   @method('DELETE')
                   <button type="submit" class="btn btn-danger btn-sm btn-xs" data-toggle="tooltip" title="Eliminar Cuento">

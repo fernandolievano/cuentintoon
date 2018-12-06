@@ -92,4 +92,9 @@ class UserController extends Controller
     {
       return "cambio avatar";
     }
+
+    public function topUsuarios(){
+      $usuarios = User::orderBy('puntos', 'DESC')->get();
+      return $usuarios;
+    }
 }
