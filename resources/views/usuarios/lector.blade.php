@@ -50,7 +50,7 @@
 
       </div>
 
-      <div class="col-md-6 col-sm-8 col-xs-12">
+      <!-- <div class="col-md-6 col-sm-8 col-xs-12">
 
         <table class="table table-sm table-hover">
           <thead class="bg-3 text-light">
@@ -66,33 +66,27 @@
             <tr>
               <td>Caperucita Roja</td>
               <td>
-                <button
-                type="button" class="btn btn-sm form-button btn-circle float-right"
-                name="fav" title="Quitar de favoritos" data-toogle="tooltip"
-                >
-                <i class="far fa-star"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>El mago de Oz</td>
-            <td>
-              <button
-              type="button" class="btn btn-sm form-button btn-circle float-right"
-              name="fav" title="Quitar de favoritos" data-toogle="tooltip" 
-              >
-              <i class="far fa-star"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                <button type="button" class="btn btn-sm form-button btn-circle float-right" name="fav" title="Quitar de favoritos" data-toogle="tooltip">
+                  <i class="far fa-star"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>El mago de Oz</td>
+              <td>
+                <button type="button" class="btn btn-sm form-button btn-circle float-right" name="fav" title="Quitar de favoritos" data-toogle="tooltip">
+                  <i class="far fa-star"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div> -->
+
+    </div>
 
   </div>
-
-</div>
-
-</div>
 
 </div>
 <!-- Fin Dashboard de lector -->
